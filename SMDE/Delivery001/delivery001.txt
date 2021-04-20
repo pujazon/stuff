@@ -1,0 +1,22 @@
+a)
+* OlympicG mean is lower than Decastar mean. Furthermore, Decastar upper quartile is lower than OlympicG mean. So 75% of times on Decastar are worse than 50% times of Decastar. Then we can lightly generalize that OlympicG times are faster than Decastar times.
+
+* OlympicG areas delimited by upper quartile and maximum value and lower quartile and minimum (whiskers) are higher than the ones defined on Decastar. This means that a 50% (25% and 25%) of times (more extreme times) on Decastar are less variant than in OlympicG. This could make sense with the fact that OlympicG has only 13 participant while Decastar has 40, so with less samples it's more frequent to have more different values between them.
+
+* Also there's an lower outlier on OlympicG which shows a very low time, being the fastest time on all competitions.
+
+b)
+
+c)
+X100m follows, more or less, normal distr with mean=11, sd=0.4.
+Long.jump follows, more or less, normal distr with mean=7.3, sd=0.3.
+Shot.put follows, more or less, normal distr with mean=14.5, sd=1.
+High.jump follows, more or less, normal distr with mean=1.98, sd=0.1.
+X400m follows, more or less, normal distr with mean=50, sd=0.8.
+X110m.hurdle follows, more or less, normal distr with mean=14.6, sd=0.6.
+Discus follows, more or less, normal distr with mean=44, sd=3.5.
+Pole.vault follows, more or less, normal distr with mean=4.8, sd=0.4.
+Javeline follows, more or less, normal distr with mean=58, sd=6.
+X1500m follows, more or less, normal distr with mean=279, sd=12.
+Rank follows, more or less, normal distr with mean=11, sd=8.
+Points follows, more or less, normal distr with mean=8005, sd=300.

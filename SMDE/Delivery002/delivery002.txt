@@ -1,0 +1,7 @@
+Generate three populations that follow a normal distribution, using your own algorithm. As an example, the first is a population that follows a normal distribution with a parameter mean=0, the second with mean=10, and the third with mean=0. Select the SAME variance for the three distributions at your convenience (a value >0).
+We want to analyze using an ANOVA if these three populations are different (or not) depending on the parameter selected.
+Analyze and explain the results obtained. Justify your answers.
+
+dis1<-rnorm(50, mean=10, sd=0.1)
+dis2<-rnorm(50, mean=8, sd=0.7)
+dis3<-rnorm(50, mean=12, sd=2)
