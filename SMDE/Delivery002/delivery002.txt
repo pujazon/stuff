@@ -5,3 +5,13 @@ Analyze and explain the results obtained. Justify your answers.
 dis1<-rnorm(50, mean=10, sd=0.1)
 dis2<-rnorm(50, mean=8, sd=0.7)
 dis3<-rnorm(50, mean=12, sd=2)
+
+1.)
+Anova lets you to know if 1 (or more than one) variable with K groups (discrete one) is influenced by a continous variable (then each group has it's own population). so we will use it in order to see if any of the chemical properties (random continous variables) influence on wine type (categorical variable). Medium will be the reference group of the 3 groups (k=3). We have 11 continous variables to see if have some influence on wine type.
+Then, on one-way anova the null hypothesis will be all means are equal while alternate hypothesis it's some of them is different.
+First before doing anova, we have to ensure that ANOVA assumptions are true. We will run Durbin Watson, Shapiro and Breusch Pagan test to confirm it.
+(The observations within each sample must be independent, populations from which the samples are selected must be normal and the populations from which the samples are selected must have equal variances (homogeneity of variance)).
+
+So we will have to preprocess data set in order to get a table where each row is one of the categories (Low, Medium or High) and each row will have all chemical samples of each category. R script prints per console what has been saved on delivery2_001.txt file.
+In each anova test, the assumptions between all populations have been run and all are correct. Saphiro test all in all has not been able to be launched because has more than 5000 residual samples.
+On all anova tests, probability of test stadistic value is lower than p-value, then rejects each null hypothesis concluding that quality type is independent of any chemical characteristic.
