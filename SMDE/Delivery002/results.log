@@ -1,0 +1,1001 @@
+                 Env4     :2   Mean   :3.1                  
+                               3rd Qu.:3.2                  
+                               Max.   :3.7                  
+ Aroma.quality.before.shaking Fruity.before.shaking Flower.before.shaking
+ Min.   :2.6                  Min.   :2.38          Min.   :1.83         
+ 1st Qu.:2.9                  1st Qu.:2.56          1st Qu.:1.93         
+ Median :3.1                  Median :2.73          Median :2.04         
+ Mean   :3.0                  Mean   :2.71          Mean   :2.06         
+ 3rd Qu.:3.2                  3rd Qu.:2.83          3rd Qu.:2.18         
+ Max.   :3.4                  Max.   :3.15          Max.   :2.28         
+ Spice.before.shaking Visual.intensity     Nuance    Surface.feeling Odor.Intensity
+ Min.   :1.67         Min.   :2.6      Min.   :2.5   Min.   :2.4     Min.   :2.9   
+ 1st Qu.:1.81         1st Qu.:3.7      1st Qu.:3.4   1st Qu.:3.1     1st Qu.:3.3   
+ Median :1.96         Median :4.1      Median :3.9   Median :3.3     Median :3.4   
+ Mean   :1.99         Mean   :4.0      Mean   :3.7   Mean   :3.2     Mean   :3.4   
+ 3rd Qu.:2.08         3rd Qu.:4.3      3rd Qu.:4.0   3rd Qu.:3.4     3rd Qu.:3.5   
+ Max.   :2.67         Max.   :4.7      Max.   :4.5   Max.   :3.5     Max.   :3.7   
+ Quality.of.odour     Fruity        Flower         Spice          Plante    
+ Min.   :2.8      Min.   :2.4   Min.   :1.77   Min.   :1.74   Min.   :1.75  
+ 1st Qu.:3.1      1st Qu.:2.8   1st Qu.:2.08   1st Qu.:2.11   1st Qu.:1.83  
+ Median :3.3      Median :2.9   Median :2.19   Median :2.16   Median :1.96  
+ Mean   :3.2      Mean   :2.8   Mean   :2.16   Mean   :2.18   Mean   :1.96  
+ 3rd Qu.:3.4      3rd Qu.:3.0   3rd Qu.:2.27   3rd Qu.:2.28   3rd Qu.:2.04  
+ Max.   :3.5      Max.   :3.2   Max.   :2.44   Max.   :2.61   Max.   :2.30  
+    Phenolic    Aroma.intensity Aroma.persistency Aroma.quality Attack.intensity
+ Min.   :1.25   Min.   :2.5     Min.   :2.3       Min.   :2.5   Min.   :2.2     
+ 1st Qu.:1.48   1st Qu.:3.1     1st Qu.:2.9       1st Qu.:2.9   1st Qu.:3.0     
+ Median :1.54   Median :3.2     Median :3.0       Median :3.2   Median :3.2     
+ Mean   :1.54   Mean   :3.2     Mean   :3.0       Mean   :3.1   Mean   :3.2     
+ 3rd Qu.:1.60   3rd Qu.:3.3     3rd Qu.:3.1       3rd Qu.:3.3   3rd Qu.:3.4     
+ Max.   :1.91   Max.   :3.6     Max.   :3.3       Max.   :3.5   Max.   :3.5     
+    Acidity     Astringency      Alcohol        Balance        Smooth   
+ Min.   :2.1   Min.   :1.96   Min.   :2.25   Min.   :2.3   Min.   :1.7  
+ 1st Qu.:2.2   1st Qu.:2.32   1st Qu.:2.70   1st Qu.:3.1   1st Qu.:2.5  
+ Median :2.4   Median :2.50   Median :2.78   Median :3.2   Median :2.8  
+ Mean   :2.4   Mean   :2.44   Mean   :2.74   Mean   :3.1   Mean   :2.7  
+ 3rd Qu.:2.4   3rd Qu.:2.61   3rd Qu.:2.82   3rd Qu.:3.3   3rd Qu.:2.9  
+ Max.   :3.2   Max.   :2.67   Max.   :2.96   Max.   :3.5   Max.   :3.3  
+   Bitterness     Intensity      Harmony    Overall.quality    Typical   
+ Min.   :1.68   Min.   :2.2   Min.   :2.0   Min.   :2.4     Min.   :2.2  
+ 1st Qu.:1.96   1st Qu.:3.0   1st Qu.:3.0   1st Qu.:3.2     1st Qu.:3.0  
+ Median :2.04   Median :3.2   Median :3.2   Median :3.5     Median :3.3  
+ Mean   :2.07   Mean   :3.2   Mean   :3.1   Mean   :3.3     Mean   :3.2  
+ 3rd Qu.:2.14   3rd Qu.:3.4   3rd Qu.:3.4   3rd Qu.:3.6     3rd Qu.:3.5  
+ Max.   :2.67   Max.   :3.7   Max.   :3.8   Max.   :3.9     Max.   :3.9  
+
+Restarting R session...
+
+> install.packages("FactoMineR")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/danie/Documents/R/win-library/4.0’
+(as ‘lib’ is unspecified)
+probando la URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/FactoMineR_2.4.zip'
+Content type 'application/zip' length 3758467 bytes (3.6 MB)
+downloaded 3.6 MB
+
+package ‘FactoMineR’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\danie\AppData\Local\Temp\RtmpoZ1Nx0\downloaded_packages
+> data(wine)
+Warning messages:
+1: In doTryCatch(return(expr), name, parentenv, handler) :
+  invalid graphics state
+2: In doTryCatch(return(expr), name, parentenv, handler) :
+  invalid graphics state
+3: In data(wine) : data set ‘wine’ not found
+> head(wine)
+          Label      Soil Odor.Intensity.before.shaking
+2EL      Saumur      Env1                           3.1
+1CHA     Saumur      Env1                           3.0
+1FON Bourgueuil      Env1                           2.9
+1VAU     Chinon      Env2                           2.8
+1DAM     Saumur Reference                           3.6
+2BOU Bourgueuil Reference                           2.9
+     Aroma.quality.before.shaking Fruity.before.shaking Flower.before.shaking
+2EL                           3.0                   2.7                   2.3
+1CHA                          2.8                   2.4                   2.3
+1FON                          2.9                   2.6                   2.0
+1VAU                          2.6                   2.4                   1.9
+1DAM                          3.4                   3.2                   2.2
+2BOU                          3.1                   2.6                   2.0
+     Spice.before.shaking Visual.intensity Nuance Surface.feeling Odor.Intensity
+2EL                   2.0              4.3    4.0             3.3            3.4
+1CHA                  1.7              3.2    3.0             2.8            3.4
+1FON                  2.1              3.5    3.4             3.0            3.2
+1VAU                  2.2              2.9    2.8             2.5            3.2
+1DAM                  2.0              4.4    4.0             3.4            3.5
+2BOU                  2.1              4.5    4.3             3.4            3.2
+     Quality.of.odour Fruity Flower Spice Plante Phenolic Aroma.intensity
+2EL               3.3    2.9    2.3   1.8    2.0      1.6             3.3
+1CHA              3.0    2.6    2.4   1.7    2.0      1.4             3.0
+1FON              2.9    2.8    2.2   2.2    1.8      1.2             3.1
+1VAU              2.9    2.4    2.1   2.2    2.3      1.5             2.5
+1DAM              3.4    3.2    2.2   2.1    1.8      1.6             3.6
+2BOU              3.4    2.8    2.2   2.1    1.8      1.5             3.2
+     Aroma.persistency Aroma.quality Attack.intensity Acidity Astringency Alcohol
+2EL                3.0           3.2              3.0     2.1         2.4     2.5
+1CHA               2.8           2.9              3.0     2.1         2.2     2.7
+1FON               2.8           3.1              3.2     2.2         2.2     2.6
+1VAU               2.6           2.5              2.7     3.2         2.2     2.5
+1DAM               3.3           3.5              3.5     2.6         2.5     2.8
+2BOU               3.1           3.3              3.3     2.4         2.6     2.9
+     Balance Smooth Bitterness Intensity Harmony Overall.quality Typical
+2EL      3.2    2.7        1.9       2.9     3.1             3.4     3.2
+1CHA     2.9    2.5        1.9       2.9     3.0             3.2     3.0
+1FON     3.3    2.7        2.0       3.1     3.1             3.5     3.2
+1VAU     2.3    1.7        2.0       2.5     2.0             2.5     2.2
+1DAM     3.5    3.0        2.1       3.6     3.6             3.7     3.4
+2BOU     3.3    2.9        2.2       3.5     3.5             3.6     3.4
+> summary(wine)
+        Label           Soil   Odor.Intensity.before.shaking
+ Saumur    :11   Reference:7   Min.   :2.6                  
+ Bourgueuil: 6   Env1     :7   1st Qu.:2.9                  
+ Chinon    : 4   Env2     :5   Median :3.1                  
+                 Env4     :2   Mean   :3.1                  
+                               3rd Qu.:3.2                  
+                               Max.   :3.7                  
+ Aroma.quality.before.shaking Fruity.before.shaking Flower.before.shaking
+ Min.   :2.6                  Min.   :2.38          Min.   :1.83         
+ 1st Qu.:2.9                  1st Qu.:2.56          1st Qu.:1.93         
+ Median :3.1                  Median :2.73          Median :2.04         
+ Mean   :3.0                  Mean   :2.71          Mean   :2.06         
+ 3rd Qu.:3.2                  3rd Qu.:2.83          3rd Qu.:2.18         
+ Max.   :3.4                  Max.   :3.15          Max.   :2.28         
+ Spice.before.shaking Visual.intensity     Nuance    Surface.feeling Odor.Intensity
+ Min.   :1.67         Min.   :2.6      Min.   :2.5   Min.   :2.4     Min.   :2.9   
+ 1st Qu.:1.81         1st Qu.:3.7      1st Qu.:3.4   1st Qu.:3.1     1st Qu.:3.3   
+ Median :1.96         Median :4.1      Median :3.9   Median :3.3     Median :3.4   
+ Mean   :1.99         Mean   :4.0      Mean   :3.7   Mean   :3.2     Mean   :3.4   
+ 3rd Qu.:2.08         3rd Qu.:4.3      3rd Qu.:4.0   3rd Qu.:3.4     3rd Qu.:3.5   
+ Max.   :2.67         Max.   :4.7      Max.   :4.5   Max.   :3.5     Max.   :3.7   
+ Quality.of.odour     Fruity        Flower         Spice          Plante    
+ Min.   :2.8      Min.   :2.4   Min.   :1.77   Min.   :1.74   Min.   :1.75  
+ 1st Qu.:3.1      1st Qu.:2.8   1st Qu.:2.08   1st Qu.:2.11   1st Qu.:1.83  
+ Median :3.3      Median :2.9   Median :2.19   Median :2.16   Median :1.96  
+ Mean   :3.2      Mean   :2.8   Mean   :2.16   Mean   :2.18   Mean   :1.96  
+ 3rd Qu.:3.4      3rd Qu.:3.0   3rd Qu.:2.27   3rd Qu.:2.28   3rd Qu.:2.04  
+ Max.   :3.5      Max.   :3.2   Max.   :2.44   Max.   :2.61   Max.   :2.30  
+    Phenolic    Aroma.intensity Aroma.persistency Aroma.quality Attack.intensity
+ Min.   :1.25   Min.   :2.5     Min.   :2.3       Min.   :2.5   Min.   :2.2     
+ 1st Qu.:1.48   1st Qu.:3.1     1st Qu.:2.9       1st Qu.:2.9   1st Qu.:3.0     
+ Median :1.54   Median :3.2     Median :3.0       Median :3.2   Median :3.2     
+ Mean   :1.54   Mean   :3.2     Mean   :3.0       Mean   :3.1   Mean   :3.2     
+ 3rd Qu.:1.60   3rd Qu.:3.3     3rd Qu.:3.1       3rd Qu.:3.3   3rd Qu.:3.4     
+ Max.   :1.91   Max.   :3.6     Max.   :3.3       Max.   :3.5   Max.   :3.5     
+    Acidity     Astringency      Alcohol        Balance        Smooth   
+ Min.   :2.1   Min.   :1.96   Min.   :2.25   Min.   :2.3   Min.   :1.7  
+ 1st Qu.:2.2   1st Qu.:2.32   1st Qu.:2.70   1st Qu.:3.1   1st Qu.:2.5  
+ Median :2.4   Median :2.50   Median :2.78   Median :3.2   Median :2.8  
+ Mean   :2.4   Mean   :2.44   Mean   :2.74   Mean   :3.1   Mean   :2.7  
+ 3rd Qu.:2.4   3rd Qu.:2.61   3rd Qu.:2.82   3rd Qu.:3.3   3rd Qu.:2.9  
+ Max.   :3.2   Max.   :2.67   Max.   :2.96   Max.   :3.5   Max.   :3.3  
+   Bitterness     Intensity      Harmony    Overall.quality    Typical   
+ Min.   :1.68   Min.   :2.2   Min.   :2.0   Min.   :2.4     Min.   :2.2  
+ 1st Qu.:1.96   1st Qu.:3.0   1st Qu.:3.0   1st Qu.:3.2     1st Qu.:3.0  
+ Median :2.04   Median :3.2   Median :3.2   Median :3.5     Median :3.3  
+ Mean   :2.07   Mean   :3.2   Mean   :3.1   Mean   :3.3     Mean   :3.2  
+ 3rd Qu.:2.14   3rd Qu.:3.4   3rd Qu.:3.4   3rd Qu.:3.6     3rd Qu.:3.5  
+ Max.   :2.67   Max.   :3.7   Max.   :3.8   Max.   :3.9     Max.   :3.9  
+> View(wine)
+> #########################################################
+> #Red and White Wine Quality
+> #########################################################
+> #Libaries
+> library(RcmdrMisc)
+Loading required package: car
+Loading required package: carData
+Loading required package: sandwich
+> library(lmtest)
+Loading required package: zoo
+
+Attaching package: ‘zoo’
+
+The following objects are masked from ‘package:base’:
+
+    as.Date, as.Date.numeric
+
+> library(car)
+> 
+> #Read DataSet
+> options(digits=2)
+> redDS<-read.csv2("winequality-red.csv", sep=",", dec=".")
+> rRows<-nrow(redDS)
+> redDS$ID<-(1:rRows)
+> redDS$Type<-c("Red")
+> 
+> whiteDS<-read.csv2("winequality-white.csv", sep=";", dec=".")
+> wRows<-nrow(whiteDS)
+> wIdIni<-(rRows+1)
+> wIdEnd<-(wIdIni+wRows-1)
+> whiteDS$ID<-(wIdIni:wIdEnd)
+> whiteDS$Type<-c("White")
+> 
+> RW <- rbind(redDS,whiteDS)
+> RW$WineQuality<- cut(RW$quality,c(1,5,6,10))
+> levels(RW$WineQuality)<-c("Low","Medium","High")
+> 
+> #Variables and constants
+> lastChemicIdx<-13
+> qualityIdx<-15
+> 
+> for (chemic in 1:lastChemicIdx) {
++   print("************************")
++   print(paste0("Chemical prop: ", chemic))
++   AnovaModel.1 <- aov(RW[,chemic]~RW[,qualityIdx], data=RW)
++ 
++   print("Check Anova assumptions")
++   #print(shapiro.test(RW[,chemic]))
++   print(dwtest(AnovaModel.1,alternative="two.sided"))
++   print(bptest(AnovaModel.1))
++   
++   
++   print(summary(AnovaModel.1))
++   print("************************")
++ }
+[1] "************************"
+[1] "Chemical prop: 1"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 2, df = 2, p-value = 0.5
+
+                   Df Sum Sq Mean Sq F value  Pr(>F)    
+RW[, qualityIdx]    2     57   28.45      17 4.3e-08 ***
+Residuals        6494  10861    1.67                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 2"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 155, df = 2, p-value <2e-16
+
+                   Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, qualityIdx]    2   13.1    6.55     261 <2e-16 ***
+Residuals        6494  163.0    0.03                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 3"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 90, df = 2, p-value <2e-16
+
+                   Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, qualityIdx]    2    0.9   0.447    21.3  6e-10 ***
+Residuals        6494  136.3   0.021                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 4"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 18, df = 2, p-value = 1e-04
+
+                   Df Sum Sq Mean Sq F value  Pr(>F)    
+RW[, qualityIdx]    2    614   307.1    13.6 1.3e-06 ***
+Residuals        6494 146434    22.5                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 5"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 25, df = 2, p-value = 4e-06
+
+                   Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, qualityIdx]    2   0.34  0.1723     147 <2e-16 ***
+Residuals        6494   7.63  0.0012                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 6"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 26, df = 2, p-value = 3e-06
+
+                   Df  Sum Sq Mean Sq F value Pr(>F)   
+RW[, qualityIdx]    2    4122    2061    6.55 0.0014 **
+Residuals        6494 2042386     315                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 7"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 0.8, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 136, df = 2, p-value <2e-16
+
+                   Df   Sum Sq Mean Sq F value  Pr(>F)    
+RW[, qualityIdx]    2    73818   36909    11.6 9.4e-06 ***
+Residuals        6494 20679084    3184                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 8"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 21, df = 2, p-value = 3e-05
+
+                   Df Sum Sq  Mean Sq F value Pr(>F)    
+RW[, qualityIdx]    2 0.0063 0.003144     392 <2e-16 ***
+Residuals        6494 0.0521 0.000008                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 9"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 0.3, df = 2, p-value = 0.9
+
+                   Df Sum Sq Mean Sq F value Pr(>F)  
+RW[, qualityIdx]    2    0.1  0.0732    2.83  0.059 .
+Residuals        6494  167.8  0.0258                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 10"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 5, df = 2, p-value = 0.08
+
+                   Df Sum Sq Mean Sq F value Pr(>F)   
+RW[, qualityIdx]    2    0.3  0.1274    5.76 0.0032 **
+Residuals        6494  143.6  0.0221                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 11"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 258, df = 2, p-value <2e-16
+
+                   Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, qualityIdx]    2   2069    1035     937 <2e-16 ***
+Residuals        6494   7172       1                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 12"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 2, p-value = 4e-09
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 291, df = 2, p-value <2e-16
+
+                   Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, qualityIdx]    2   4469    2234   29932 <2e-16 ***
+Residuals        6494    485       0                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "Chemical prop: 13"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 0.03, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 29, df = 2, p-value = 5e-07
+
+                   Df   Sum Sq  Mean Sq F value Pr(>F)    
+RW[, qualityIdx]    2 3.91e+08 1.96e+08    56.6 <2e-16 ***
+Residuals        6494 2.25e+10 3.46e+06                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+> RW[,15]
+   [1] Low    Low    Low    Medium Low    Low    Low    High   High   Low    Low   
+  [12] Low    Low    Low    Low    Low    High   Low    Low    Medium Medium Low   
+  [23] Low    Low    Medium Low    Low    Low    Low    Medium Low    Medium Low   
+  [34] Medium Low    Medium Medium High   Low    Low    Low    Low    Medium Low   
+  [45] Low    Low    Low    Low    Low    Low    Low    Medium Medium Low    Medium
+  [56] Low    Low    Low    Low    Medium Low    Low    High   Low    Low    Low   
+  [67] Low    Low    Low    Medium Medium Low    Low    Low    Low    Low    Low   
+  [78] Medium Low    Low    Low    Low    Low    Low    Medium Low    Medium Low   
+  [89] Low    Low    Low    Medium Low    Low    Low    Medium Low    Low    Low   
+ [100] Medium Medium Medium Medium Low    Low    Low    Low    Low    Medium Low   
+ [111] Low    Low    Low    Medium Low    Medium Medium Medium Medium Medium Low   
+ [122] Medium Low    Low    Low    Low    Low    Low    High   Low    Low    Low   
+ [133] Low    Medium Medium Low    Low    Low    Low    Low    Low    Low    Medium
+ [144] Low    Medium Low    Low    Low    Medium Medium Medium Low    Low    Low   
+ [155] Low    Low    Low    Low    Low    Medium Low    Low    Medium Low    Low   
+ [166] Low    Low    Low    Medium Low    Low    Medium Medium Medium Low    Low   
+ [177] Low    Medium Low    Low    Low    Low    Low    Low    Medium Low    Low   
+ [188] Low    Low    Low    Low    Medium Low    Low    Low    Low    Low    Medium
+ [199] High   Low    High   Low    Low    Low    Medium High   High   Low    Low   
+ [210] High   Medium Medium Medium Low    Medium Low    Low    Low    Low    Low   
+ [221] Medium Low    Low    Medium Low    Medium Medium Low    Medium Low    High  
+ [232] Medium Medium Low    Medium Medium Medium Medium Medium Medium Low    Medium
+ [243] Medium High   High   Medium Low    Low    Medium Medium Medium Medium Low   
+ [254] Low    Medium Low    Low    Low    Low    High   Low    Low    Low    Low   
+ [265] Low    High   Low    High   Medium Medium Medium Medium Low    Low    Low   
+ [276] Medium Medium Medium High   High   Medium High   Low    High   Low    Low   
+ [287] Medium Medium High   Low    High   Low    Medium Medium Medium Low    Low   
+ [298] Low    Low    Low    Medium Medium Low    Low    Low    Medium Low    Medium
+ [309] Medium Medium Medium Medium Medium Low    Low    Medium Low    Medium High  
+ [320] Medium High   Low    Low    Medium Medium Medium High   Low    Medium Low   
+ [331] Medium Medium Medium Low    High   High   Medium Low    Medium High   Medium
+ [342] Medium Medium Medium Medium Low    High   Medium Medium Medium Medium Medium
+ [353] Low    Low    Medium Medium Low    High   High   Medium Low    Medium Low   
+ [364] Low    High   Medium High   Low    Low    High   Low    Medium Medium Low   
+ [375] Medium High   Medium High   Medium Medium Medium Medium Medium Medium Low   
+ [386] Medium Medium Medium Medium High   High   Medium Low    Low    Low    High  
+ [397] Low    Medium Medium Low    Low    Medium Medium Medium Low    Medium Medium
+ [408] High   Medium Low    Medium Low    Low    High   Low    Low    Medium Low   
+ [419] Medium Low    High   High   Low    High   Low    High   Medium Medium Low   
+ [430] Medium High   Low    Medium Low    Medium Low    Medium Medium Medium Low   
+ [441] High   Medium High   High   High   Medium Low    Low    Medium Medium Medium
+ [452] Medium Medium High   Low    High   Low    Low    High   Low    Medium Low   
+ [463] Low    Low    Medium Low    Medium Medium Medium Low    Low    Medium Medium
+ [474] Low    Medium Low    Low    Medium Low    Medium Low    High   Low    Low   
+ [485] Medium Low    Low    Medium High   Medium Medium High   High   Medium Medium
+ [496] High   Medium Low    High   Medium Medium High   High   High   High   High  
+ [507] High   Medium Medium High   Low    Medium Medium High   High   Low    Medium
+ [518] Low    Medium Low    Medium Low    Low    Low    Low    Low    Low    Medium
+ [529] Medium Low    Medium Low    Low    Medium Medium Medium Low    Medium High  
+ [540] Low    Low    Medium Low    Medium Medium Low    Medium Medium Medium Medium
+ [551] Medium Medium Medium Low    Low    Low    Medium Low    Medium Medium Low   
+ [562] Low    Low    Medium Medium Low    Medium Medium Medium Medium Medium Medium
+ [573] Low    Low    Medium Medium Low    Low    Low    Medium Low    Low    Low   
+ [584] High   High   Medium High   Low    High   High   Low    Medium Low    Low   
+ [595] Low    Low    Medium Medium Medium Medium Low    Medium Low    Medium Medium
+ [606] Medium High   Medium Medium Medium Low    Low    Medium Low    Medium Low   
+ [617] Low    Medium Low    Low    Low    Low    Low    Medium Low    Low    Low   
+ [628] Low    Medium Low    Medium Low    Medium Low    Low    Low    Low    Low   
+ [639] High   Medium Low    Low    Low    Low    Low    High   Low    Low    High  
+ [650] Medium Low    Low    Low    Medium Low    Low    Low    High   Medium Low   
+ [661] Medium Low    Medium Medium Low    Low    Medium Medium Low    Medium Low   
+ [672] Low    Low    Low    Medium Low    Medium Low    Low    Low    Low    Medium
+ [683] Low    Low    Low    Low    Low    Low    Low    Low    Low    Low    Low   
+ [694] Low    Low    Medium Medium Medium Low    Medium Medium Medium Medium Low   
+ [705] Low    Low    Low    Low    Medium Medium Low    Low    Low    Low    Low   
+ [716] Medium Low    Low    Low    Low    Low    Low    Low    Low    Low    Low   
+ [727] Medium Low    Low    Medium Low    Low    Low    Low    Low    Low    Low   
+ [738] Medium Low    Low    Medium Low    Low    Low    Low    Medium Medium Low   
+ [749] Medium Medium Low    Low    Low    Low    Medium Medium Medium Low    Low   
+ [760] Low    Low    Low    Medium Low    Medium Medium Low    Low    Medium Low   
+ [771] Medium Low    Low    Medium Medium Low    Medium Medium Low    Low    Medium
+ [782] Low    Low    Low    Low    Low    Low    Medium Medium Low    Medium Low   
+ [793] Medium Low    Medium Low    Low    High   Medium Medium Low    Low    High  
+ [804] Medium Medium High   High   High   Low    Medium Low    Medium Low    Low   
+ [815] Medium Low    Medium Medium Low    Low    Low    High   Low    Low    Low   
+ [826] Low    High   Low    High   Medium Low    Medium Low    Low    Low    Low   
+ [837] High   High   High   Low    High   Low    Medium Low    Medium Low    Low   
+ [848] Medium Low    Low    Low    Low    Low    Medium Medium High   Medium High  
+ [859] High   Medium Low    Medium Low    Low    Low    Low    Medium Medium Medium
+ [870] Medium Medium Low    Low    High   High   High   Low    Medium Medium Low   
+ [881] Low    Medium Medium Low    Medium Low    Medium High   Medium Low    Low   
+ [892] Low    Medium Low    Medium Medium High   Medium High   Low    Low    High  
+ [903] High   High   High   Low    Low    Medium Medium Medium Medium Medium Medium
+ [914] High   Medium Medium Low    Medium Medium Medium Low    Medium Medium Medium
+ [925] Low    High   Medium Low    Low    High   Low    Low    Medium Low    Low   
+ [936] Medium Medium Low    High   Low    High   High   High   High   High   High  
+ [947] High   High   High   High   High   High   High   High   Medium Low    Medium
+ [958] Medium High   Low    Medium Low    Low    Medium Medium Medium High   Low   
+ [969] Medium Low    Medium Medium High   Low    High   Low    Low    Low    High  
+ [980] Low    Medium Low    Medium Medium Low    Medium High   Low    Low    Medium
+ [991] Low    Low    Medium Low    Low    Medium High   High   Medium Medium
+ [ reached getOption("max.print") -- omitted 5497 entries ]
+Levels: Low Medium High
+> RW[,1]
+   [1]  7.4  7.8  7.8 11.2  7.4  7.4  7.9  7.3  7.8  7.5  6.7  7.5  5.6  7.8  8.9
+  [16]  8.9  8.5  8.1  7.4  7.9  8.9  7.6  7.9  8.5  6.9  6.3  7.6  7.9  7.1  7.8
+  [31]  6.7  6.9  8.3  6.9  5.2  7.8  7.8  8.1  5.7  7.3  7.3  8.8  7.5  8.1  6.8
+  [46]  4.6  7.7  8.7  6.4  5.6  8.8  6.6  6.6  8.6  7.6  7.7 10.2  7.5  7.8  7.3
+  [61]  8.8  7.7  7.5  7.0  7.2  7.2  7.5  6.6  9.3  8.0  7.7  7.7  7.7  8.3  9.7
+  [76]  8.8  8.8  6.8  6.7  8.3  6.2  7.8  7.4  7.3  6.3  6.9  8.6  7.7  9.3  7.0
+  [91]  7.9  8.6  8.6  7.7  5.0  4.7  6.8  7.0  7.6  8.1  8.3  7.8  8.1  8.1  7.2
+ [106]  8.1  7.8  6.2  8.0  8.1  7.8  8.4  8.4 10.1  7.8  9.4  8.3  7.8  8.8  7.0
+ [121]  7.3  8.8  7.3  8.0  7.8  9.0  8.2  8.1  8.0  6.1  8.0  5.6  5.6  6.6  7.9
+ [136]  8.4  8.3  7.2  7.8  7.8  8.4  8.3  5.2  6.3  5.2  8.1  5.8  7.6  6.9  8.2
+ [151]  7.3  9.2  7.5  7.5  7.1  7.1  7.1  7.1  7.1  6.8  7.6  7.6  7.8  7.4  7.3
+ [166]  7.8  6.8  7.3  6.8  7.5  7.9  8.0  8.0  7.4  7.3  6.9  7.3  7.5  7.0  8.8
+ [181]  8.8  8.9  7.2  6.8  6.7  8.9  7.4  7.7  7.9  7.9  8.2  6.4  6.8  7.6  7.6
+ [196]  7.8  7.3 11.5  5.4  6.9  9.6  8.8  6.8  7.0  7.0 12.8 12.8  7.8  7.8 11.0
+ [211]  9.7  8.0 11.6  8.2  7.8  7.0  8.7  8.1  7.5  7.8  7.8  7.4  6.8  8.6  8.4
+ [226]  7.7  8.9  9.0  7.7  6.9  5.2  8.0  8.5  6.9  8.2  7.2  7.2  7.2  7.2  8.2
+ [241]  8.9 12.0  7.7 15.0 15.0  7.3  7.1  8.2  7.7  7.3 10.8  7.1 11.1  7.7  7.1
+ [256]  8.0  9.4  6.6  7.7 10.0  7.9  7.0  8.0  7.9 12.5 11.8  8.1  7.9  6.9 11.5
+ [271]  7.9 11.5 10.9  8.4  7.5  7.9  6.9 11.5 10.3  8.9 11.4  7.7  7.6  8.9  9.9
+ [286]  9.9 12.0  7.5  8.7 11.6  8.7 11.0 10.4  6.9 13.3 10.8 10.6  7.1  7.2  6.9
+ [301]  7.5 11.1  8.3  7.4  8.4 10.3  7.6 10.3 10.3  7.4 10.3  7.9  9.0  8.6  7.4
+ [316]  7.1  9.6  9.6  9.8  9.6  9.8  9.3  7.8 10.3 10.0 10.0 11.6 10.3 13.4 10.7
+ [331] 10.2 10.2  8.0  8.4  7.9 11.9  8.9  7.8 12.4 12.5 12.2 10.6 10.9 10.9 11.9
+ [346]  7.0  6.6 13.8  9.6  9.1 10.7  9.1  7.7 13.5  6.1  6.7 11.5 10.5 11.9 12.6
+ [361]  8.2  8.6 11.9 12.5 12.8 10.0 12.8 10.4 10.3  9.4  6.9  7.9  9.1  7.4 14.0
+ [376] 11.5 11.5  9.4 11.4  8.3  8.3 13.7  8.3  8.3  7.7  7.4  7.8  8.3  7.8  9.6
+ [391]  5.6 13.7  9.5  8.4 12.7 12.0  6.6 11.5 11.5  8.7  6.6  7.7 12.2 11.4  7.7
+ [406]  8.7  9.8 12.0 10.4 12.5  9.0  9.1  7.1  9.9  8.8  8.6 10.6  7.0 11.9  6.8
+ [421]  9.5  6.6  7.7 10.5  7.7  6.6  6.4  9.5  9.1 12.8 10.5  7.8 11.9 12.3 10.4
+ [436] 12.3  8.0 11.1 10.4  7.0 12.6 11.9 15.6 10.0  5.3  9.5 12.5  9.3  8.6 11.9
+ [451] 11.9  8.4  6.8 10.4  7.0 11.3  8.9  9.2 10.4 11.6  9.2  8.3 11.0  8.1 11.5
+ [466] 10.0 10.3  8.8 11.4  8.7 13.0  9.6 12.5  9.9 10.5  9.6  9.3 10.4  9.6  9.4
+ [481] 10.6  9.4 10.6 10.6 10.6 10.2 10.2 10.2 11.6  9.3  9.3  9.2  8.9  8.7  6.5
+ [496] 10.7  7.8  7.2 10.7  8.7  7.8 10.4 10.4 10.5 10.5 10.2 10.4 11.2 10.0 13.3
+ [511] 12.4 10.0 10.7 10.5 10.5  8.5 12.5 10.4 10.9  7.3  9.8  7.6  8.2  9.3  9.2
+ [526] 10.4  7.3  7.0  8.2  9.9  9.1 11.9 11.9 10.3 10.0  9.1  9.9  8.1 12.9 11.2
+ [541]  9.2  9.5  9.3 11.2 14.3  9.1  7.5 10.6 12.4  9.0  6.8  9.4  9.5  5.0 15.5
+ [556] 15.5 10.9 15.6 10.9 13.0 12.7  9.0  9.0  7.6 13.0 12.7  8.7  8.7  9.8  6.2
+ [571] 11.5  6.2 10.2 10.5 10.6 12.3  9.9  8.8  8.8 10.6 12.3 12.3 11.7 12.0 11.8
+ [586]  7.6 11.1  7.3  5.0 10.2  9.0  6.6  9.0  9.9  7.9  8.9 12.4 11.9  8.5 12.7
+ [601]  8.2 13.2  7.7 13.2  8.3  8.3  9.4  8.8 10.1  6.3  8.8 13.2  7.5  8.2  9.2
+ [616]  9.6  9.6 11.5 11.4 11.3  8.3  8.2 10.0  7.9  6.8  6.8  8.8  8.8  8.7  7.6
+ [631]  8.7 10.4  7.6 10.1  7.9  8.7  9.6  9.5  7.7  8.9  9.9  9.5  9.9  9.5  9.9
+ [646]  7.8  7.3  8.3  8.7  6.7 10.7  9.8 15.9  9.4  8.6  9.7 10.7 12.0  7.2  7.1
+ [661]  7.2  7.5  7.2 10.1 12.1  9.4  8.3 11.3 10.0 11.3  6.9  8.2  9.8  8.2 10.8
+ [676]  9.3 10.8  8.6  8.3 10.8 13.3  8.0  8.5  8.1  9.8  8.1  7.1  9.1  7.7  8.1
+ [691]  7.4  9.2  8.6  9.0  9.0  5.1  7.0  7.0  9.4 11.8 10.6  7.0  7.0  7.5  9.1
+ [706]  8.4  7.0  7.4  7.8  9.7 10.6  8.9  8.7  8.0  9.9  7.2  8.0  7.6  8.4  7.1
+ [721]  8.4  8.9  7.6  7.1  7.5  9.0  8.1  6.4  6.4  6.4  9.5  8.9  7.3  7.0  7.7
+ [736]  7.7  7.7  8.2  9.0  9.0  8.3  9.2  6.5 11.6 11.1  7.3  8.2  8.6  7.2  7.3
+ [751]  8.3  8.3  7.6  8.3  7.8  7.8  6.3  8.1  8.1  8.8  9.0  9.3  8.8  9.3  9.1
+ [766]  9.2  8.8  7.5  7.1  7.9  7.1  9.4  9.5  7.9  7.9  7.2  6.9  6.9  8.3  7.1
+ [781]  7.0  6.5  9.0  6.5  7.1  9.9  9.9 10.0 10.0  8.6  7.4  8.8  7.1  7.7 10.1
+ [796] 10.8  8.7  9.3  9.4  9.4  7.2  8.6  5.1  7.7  8.4  8.2  8.4  8.2  7.4  7.6
+ [811]  7.3 12.9 10.8  6.9 12.6 10.8  9.8 10.8  7.1  9.1  7.0  4.9  6.7  6.7  7.1
+ [826]  7.1  7.5  7.1  7.8  5.9  7.5  5.9 10.4 11.6  8.8  7.6  6.7  6.7 10.1  6.0
+ [841] 11.1  6.6 10.6  7.1  9.9  6.4  6.4  7.4  6.4  6.4  9.3  9.3  8.0  9.3  9.3
+ [856]  7.6  9.3  8.2 11.7  6.8  7.2  5.8  7.5  7.2  7.2  7.2  6.8  6.9  6.8  7.6
+ [871]  7.7  6.9  7.3  9.1 10.4  8.8  7.1  7.7  8.8  7.2  9.2  7.6  8.4  7.2  8.8
+ [886]  8.9  9.0 10.7  6.8 10.7  7.2  7.2 10.1  7.2  7.2  7.1  8.3  7.1  8.3  8.3
+ [901]  8.9  7.4  7.4  6.8  6.8  9.2  7.2  6.1  7.4  7.3  9.3  9.1 10.0  9.4  7.3
+ [916]  8.6  5.3  6.8  8.4  8.4  9.6  8.4  8.4  6.8  8.6  8.6  9.4  8.4  8.6  8.7
+ [931]  6.6  7.4  7.6  7.4  6.6  8.8  8.8 12.0  7.2  6.2  9.6  9.9 10.1  9.8  8.3
+ [946] 10.2 10.2  8.3  8.9  8.9  8.9  8.3  8.2 10.2  7.6  8.5  9.0  9.5  6.4  8.0
+ [961]  8.5  7.1  6.6  8.8  8.5  8.3  9.0  8.5  9.0  6.7 10.4 10.4 10.1  8.5  8.8
+ [976]  7.2  7.2  8.4  7.0 12.2  9.1  9.5  7.3  9.1 12.2  7.4  9.8  7.1  7.7  9.7
+ [991]  7.7  7.1  6.5  7.1 10.0  7.7  5.6  5.6  8.9  6.4
+ [ reached getOption("max.print") -- omitted 5497 entries ]
+> #########################################################
+> #Red and White Wine Quality
+> #########################################################
+> #Libaries
+> library(RcmdrMisc)
+> library(lmtest)
+> library(car)
+> 
+> #Read DataSet
+> options(digits=2)
+> redDS<-read.csv2("winequality-red.csv", sep=",", dec=".")
+> rRows<-nrow(redDS)
+> redDS$ID<-(1:rRows)
+> redDS$Type<-c("Red")
+> 
+> whiteDS<-read.csv2("winequality-white.csv", sep=";", dec=".")
+> wRows<-nrow(whiteDS)
+> wIdIni<-(rRows+1)
+> wIdEnd<-(wIdIni+wRows-1)
+> whiteDS$ID<-(wIdIni:wIdEnd)
+> whiteDS$Type<-c("White")
+> 
+> RW <- rbind(redDS,whiteDS)
+> RW$WineQuality<- cut(RW$quality,c(1,5,6,10))
+> levels(RW$WineQuality)<-c("Low","Medium","High")
+> 
+> #Variables and constants
+> lastChemicIdx<-13
+> qualityIdx<-15
+> typeIdx<-14
+> 
+> 
+> 
+> for (chemic in 1:lastChemicIdx) {
++   print("************************")
++   print(paste0("2. Chemical prop: ", chemic))
++   AnovaModel.1 <- aov(RW[,chemic]~RW[,typeIdx], data=RW)
++   
++   print("Check Anova assumptions")
++   #print(shapiro.test(RW[,chemic]))
++   print(dwtest(AnovaModel.1,alternative="two.sided"))
++   print(bptest(AnovaModel.1))
++   
++   
++   print(summary(AnovaModel.1))
++   print("************************")
++ }
+[1] "************************"
+[1] "2. Chemical prop: 1"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 671, df = 1, p-value <2e-16
+
+                Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1   2587    2587    2017 <2e-16 ***
+Residuals     6495   8331       1                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 2"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 2, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 397, df = 1, p-value <2e-16
+
+                Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1   75.1    75.1    4829 <2e-16 ***
+Residuals     6495  101.0     0.0                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 3"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 1, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 353, df = 1, p-value <2e-16
+
+                Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1    4.8    4.82     236 <2e-16 ***
+Residuals     6495  132.4    0.02                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 4"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 2, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 237, df = 1, p-value <2e-16
+
+                Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1  17892   17892     900 <2e-16 ***
+Residuals     6495 129156      20                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 5"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 2, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 61, df = 1, p-value = 7e-15
+
+                Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1   2.10   2.096    2316 <2e-16 ***
+Residuals     6495   5.88   0.001                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 6"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 2, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 45, df = 1, p-value = 2e-11
+
+                Df  Sum Sq Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1  455241  455241    1858 <2e-16 ***
+Residuals     6495 1591267     245                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 7"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 2, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 78, df = 1, p-value <2e-16
+
+                Df   Sum Sq  Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1 10179301 10179301    6253 <2e-16 ***
+Residuals     6495 10573600     1628                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 8"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 2, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 48, df = 1, p-value = 4e-12
+
+                Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1 0.0089 0.00891    1170 <2e-16 ***
+Residuals     6495 0.0495 0.00001                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 9"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 2, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 0.9, df = 1, p-value = 0.3
+
+                Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1   18.2   18.19     789 <2e-16 ***
+Residuals     6495  149.7    0.02                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 10"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 2, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 90, df = 1, p-value <2e-16
+
+                Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1   34.1    34.1    2022 <2e-16 ***
+Residuals     6495  109.7     0.0                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 11"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 2, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 58, df = 1, p-value = 2e-14
+
+                Df Sum Sq Mean Sq F value Pr(>F)   
+RW[, typeIdx]    1     10   10.04    7.07 0.0079 **
+Residuals     6495   9231    1.42                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 12"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 2, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 17, df = 1, p-value = 4e-05
+
+                Df Sum Sq Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1     71    70.5    93.8 <2e-16 ***
+Residuals     6495   4883     0.8                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+[1] "************************"
+[1] "2. Chemical prop: 13"
+[1] "Check Anova assumptions"
+
+	Durbin-Watson test
+
+data:  AnovaModel.1
+DW = 0.001, p-value <2e-16
+alternative hypothesis: true autocorrelation is not 0
+
+
+	studentized Breusch-Pagan test
+
+data:  AnovaModel.1
+BP = 1277, df = 1, p-value <2e-16
+
+                Df   Sum Sq  Mean Sq F value Pr(>F)    
+RW[, typeIdx]    1 1.27e+10 1.27e+10    8154 <2e-16 ***
+Residuals     6495 1.01e+10 1.56e+06                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "************************"
+> 
