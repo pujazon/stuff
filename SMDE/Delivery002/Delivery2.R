@@ -103,12 +103,17 @@ for (chemic in 1:lastChemicIdx) {
   print("************************")
   print(paste0("1. Chemical prop: ", chemic))
   AnovaModel.1 <- aov(RW[,chemic]~RW[,qualityIdx], data=RW)
-
-  print("Check Anova assumptions")
-  #print(shapiro.test(RW[,chemic]))
-  print(dwtest(AnovaModel.1,alternative="two.sided"))
-  print(bptest(AnovaModel.1))
   
+  print("1. Datasets are too big, so probabilities are 
+        too small, each value is significant")
+  #print(shapiro.test(residuals(RW[,chemic])))
+  #print(dwtest(AnovaModel.1,alternative="two.sided"))
+  #print(bptest(AnovaModel.1))
+  print("1. Check Anova assumptions with plots")
+  #Normality
+  #hist(residuals(AnovaModel.1))
+  #Homogenity of variance
+  #plot(residuals(AnovaModel.1))
   
   print(summary(AnovaModel.1))
   print("************************")
@@ -120,14 +125,16 @@ for (chemic in 1:lastChemicIdx) {
   print(paste0("2. Chemical prop: ", chemic))
   m1 <- aov(RW[,chemic]~RW[,typeIdx], data=RW)
   summary.aov(m1)
-  
-  print("Check Anova assumptions")
-  if (length(residuals(AnovaModel.1)) < 3000) {
-    print(shapiro.test(residuals(AnovaModel.1)))
-  }
-  print(leveneTest(RW[,chemic]~RW[,typeIdx],data=RW))
-  print(bptest(AnovaModel.1))
-  
+
+  print("2. Datasets are too big, so probabilities are 
+        too small, each value is significant")
+  #print(shapiro.test(residuals(RW[,chemic])))
+  #print(dwtest(AnovaModel.1,alternative="two.sided"))
+  #print(bptest(AnovaModel.1))
+  print("2. Check Anova assumptions with plots")
+  #print(leveneTest(RW[,chemic]~RW[,typeIdx],data=RW))
+  #print(bptest(AnovaModel.1))
+  #qqnorm(residuals(AnovaModel.1))
   
   print(summary(AnovaModel.1))
   print("************************")
