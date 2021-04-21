@@ -1,0 +1,251 @@
+> #########################################################
+> #3rd Question: Decathlon linear regresion
+> #########################################################
+> library(car)
+> library(FactoMineR)
+> library(lmtest)
+> 
+> data(decathlon)
+> colnames(decathlon)[c(1,6)]<-c("x100m","x110m.hurdle")
+> colnames(decathlon)[c(5,10)]<-c("x400m","x1500")
+> 
+> j1500=10
+> lastNumericalVarIdx=12
+> 
+> for (numericalVarIdx in 1:lastNumericalVarIdx) {
++   print(paste0("Check correlation between x1500 and ",
++                numericalVarIdx))
++   print(cor.test(decathlon[,j1500],decathlon[,numericalVarIdx]))
++ }
+[1] "Check correlation between x1500 and 1"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = -0.4, df = 39, p-value = 0.7
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.36  0.25
+sample estimates:
+   cor 
+-0.061 
+
+[1] "Check correlation between x1500 and 2"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = -0.2, df = 39, p-value = 0.8
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.34  0.28
+sample estimates:
+   cor 
+-0.034 
+
+[1] "Check correlation between x1500 and 3"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = 0.7, df = 39, p-value = 0.5
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.20  0.41
+sample estimates:
+ cor 
+0.12 
+
+[1] "Check correlation between x1500 and 4"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = -0.3, df = 39, p-value = 0.8
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.35  0.27
+sample estimates:
+   cor 
+-0.045 
+
+[1] "Check correlation between x1500 and 5"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = 3, df = 39, p-value = 0.008
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.11 0.64
+sample estimates:
+ cor 
+0.41 
+
+[1] "Check correlation between x1500 and 6"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = 0.2, df = 39, p-value = 0.8
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.27  0.34
+sample estimates:
+  cor 
+0.038 
+
+[1] "Check correlation between x1500 and 7"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = 2, df = 39, p-value = 0.1
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.054  0.524
+sample estimates:
+ cor 
+0.26 
+
+[1] "Check correlation between x1500 and 8"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = 2, df = 39, p-value = 0.1
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.065  0.516
+sample estimates:
+ cor 
+0.25 
+
+[1] "Check correlation between x1500 and 9"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = -1, df = 39, p-value = 0.3
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.46  0.13
+sample estimates:
+  cor 
+-0.18 
+
+[1] "Check correlation between x1500 and 10"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = Inf, df = 39, p-value <2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 1 1
+sample estimates:
+cor 
+  1 
+
+[1] "Check correlation between x1500 and 11"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = 0.6, df = 39, p-value = 0.6
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.22  0.39
+sample estimates:
+ cor 
+0.09 
+
+[1] "Check correlation between x1500 and 12"
+
+	Pearson's product-moment correlation
+
+data:  decathlon[, j1500] and decathlon[, numericalVarIdx]
+t = -1, df = 39, p-value = 0.2
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.47  0.12
+sample estimates:
+  cor 
+-0.19 
+
+> 
+> j400=5
+> #Model 001
+> model01<-lm(decathlon[,j1500]~decathlon[,j400],
++             data=decathlon)
+> summary(model01)
+
+Call:
+lm(formula = decathlon[, j1500] ~ decathlon[, j400], data = decathlon)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-19.088  -6.910  -0.706   4.736  31.600 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)   
+(Intercept)          74.10      73.42    1.01   0.3191   
+decathlon[, j400]     4.13       1.48    2.79   0.0081 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 11 on 39 degrees of freedom
+Multiple R-squared:  0.167,	Adjusted R-squared:  0.145 
+F-statistic: 7.79 on 1 and 39 DF,  p-value: 0.00808
+
+> scatterplot(decathlon[,j1500]~decathlon[,j400],regLine=model01,
++             smooth=FALSE,data=decathlon)
+> 
+> #Model 001
+> model01<-lm(decathlon[,j1500]~decathlon[,j400],
++           data=decathlon)
+> summary(model01)
+
+Call:
+lm(formula = decathlon[, j1500] ~ decathlon[, j400], data = decathlon)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-19.088  -6.910  -0.706   4.736  31.600 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)   
+(Intercept)          74.10      73.42    1.01   0.3191   
+decathlon[, j400]     4.13       1.48    2.79   0.0081 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 11 on 39 degrees of freedom
+Multiple R-squared:  0.167,	Adjusted R-squared:  0.145 
+F-statistic: 7.79 on 1 and 39 DF,  p-value: 0.00808
+
+> 
+> 
+> ### Test of Regression Assumptions ###
+> ### 1. Normality of the Error Term ###
+> # Using QQ plot and histogram. It follows the qq plot follows a line
+> # while histogram also shows a kind of normal distribution. So accepted
+> qqnorm(residuals(model01))
+> hist(residuals(model01))
+> 
+> ### 2. Homogenity of Variance ###
+> # Residual Analysis #
+> plot(residuals(model01))
+> 
+> ### 3. The independence of errors ### 
+> dwtest(model01, alternative = "two.sided")
+
+	Durbin-Watson test
+
+data:  model01
+DW = 2, p-value = 0.3
+alternative hypothesis: true autocorrelation is not 0
+
+> # There is not an autocorrelaiton in the data set (p>0.05).
+> # The errors/observations are independent.
+> 

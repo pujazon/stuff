@@ -1,0 +1,17 @@
+******
+We have the response variable, x1500, and 13 potential independant variables. So our criteria due to get the most accurate multiple linear regression model will be picking most relevant independant variables. To know that, we are going to see correlations between each independant variable and x1500.
+
+If we calculus them, only x400 has a, more or less, significant 0.40 value. Others are between 0.26 and 0.12 and the rest below to 0.09. So x400 is the most related variable with x1500 and other candidate that are related with (or have any impact on x1500 result) are Dicsuss, Pole.vault, Javeline, Shot.put, x1000 and Points.
+
+So before generating our model, let's check the plot with x400 and x1500 data. It follows some positive propotionality (more or less when x400 increases, x1500 increases too) even not all points are not so near and so on. Make sense with 0.40 value, it's a weak positive relationship.
+
+Then I do my model 01 using x400 variable. 
+x1500 Time = 74.10 + 4.13 (x400 Time)
+
+Slope is accepted (also with F-stadistic we know that independant variable affects on response) but intercept parameter not. But out dataset has not result 0 on x1500 so it's not significant.
+16.7% of the change on x1500 can be explained by x400.
+Also makes quite sense that x400 * 4 is x1600 which is near to x1500 (also then interesting than x100 times are not correlated with x1500)
+
+Finally, in order to confirm that this model is not falsifying us, we have to check the linear regression assumptions. Checking qq-plots and histogram for normality of the error Term, plot of redisuals for homogenity of variance and independence of errors with Durbin-Watson test we can confirm all of them.
+******
+So if wanted to search other candidate model with all candidate variables (so with 7 independant variables). Then analyzing the % impact of each independant variable we will try to do some new model without less meaningful variables and check if it is more accurate (may not because removing one variable can have impact on the others).
