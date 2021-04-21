@@ -8,7 +8,7 @@ library(car)
 
 #Read DataSet
 options(digits=2)
-redDS<-read.csv2("winequality-red.csv", sep=",", dec=".")
+redDS<-read.csv2("winequality-red.csv", sep=";", dec=".")
 rRows<-nrow(redDS)
 redDS$ID<-(1:rRows)
 redDS$Type<-c("Red")
@@ -20,8 +20,10 @@ wIdEnd<-(wIdIni+wRows-1)
 whiteDS$ID<-(wIdIni:wIdEnd)
 whiteDS$Type<-c("White")
 
-RW <- rbind(redDS,whiteDS)
-RW$WineQuality<- cut(RW$quality,c(1,5,6,10))
+
+RW=mergeRows(redDS, whiteDS, common.only=FALSE)
+#RW <- rbind(redDS,whiteDS)
+RW$WineQuality<- cut(RW$quality,c(1,4.99,6,10))
 levels(RW$WineQuality)<-c("Low","Medium","High")
 
 #Variables and constants
@@ -52,8 +54,10 @@ for (chemic in 1:lastChemicIdx) {
   summary.aov(m1)
   
   print("Check Anova assumptions")
-  #print(shapiro.test(RW[,chemic]))
-  print(dwtest(AnovaModel.1,alternative="two.sided"))
+  if (length(residuals(AnovaModel.1)) < 3000) {
+    print(shapiro.test(residuals(AnovaModel.1)))
+  }
+  print(leveneTest(RW[,chemic]~RW[,typeIdx],data=RW))
   print(bptest(AnovaModel.1))
   
   
