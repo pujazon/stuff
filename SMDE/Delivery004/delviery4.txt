@@ -1,0 +1,9 @@
+So let's see the correlation matrix to see the correlations between variables.
+There are some high correlations as x1500 and Rank points, or Rank and Points, POle.vault and x100...
+
+So doing the PCA we see that taking three principal components which influyes over 66%.
+
+Before wokring more with that PCA, we have to ensure of assumptions of PCA.
+
+Printing the Variable factor map plot, we see how near each vector component from the others. And we can see how x1500 variable and Long.jump has more or less all the other vectors at the same distance and quite spread, so this component doesn't make sensto be group with any other components. On the other side Javeline, Discuss,Shot.put and High.jump are quite near so this ones could be joined on one derived component and x400m, x110m.hurdle, Rank and x100 are near too, so can be joined too.
+
