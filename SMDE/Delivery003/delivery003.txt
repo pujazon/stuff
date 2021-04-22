@@ -9,9 +9,22 @@ Then I do my model 01 using x400 variable.
 x1500 Time = 74.10 + 4.13 (x400 Time)
 
 Slope is accepted (also with F-stadistic we know that independant variable affects on response) but intercept parameter not. But out dataset has not result 0 on x1500 so it's not significant.
+Slope value says that if you x400 time result increases 1 second, the x1500 time result will increase 4 seconds.Makes quite sense that x400 * 4 is x1600 which is near to x1500 (also then interesting than x100 times are not correlated with x1500)
 16.7% of the change on x1500 can be explained by x400.
-Also makes quite sense that x400 * 4 is x1600 which is near to x1500 (also then interesting than x100 times are not correlated with x1500)
 
 Finally, in order to confirm that this model is not falsifying us, we have to check the linear regression assumptions. Checking qq-plots and histogram for normality of the error Term, plot of redisuals for homogenity of variance and independence of errors with Durbin-Watson test we can confirm all of them.
 ******
 So if wanted to search other candidate model with all candidate variables (so with 7 independant variables). Then analyzing the % impact of each independant variable we will try to do some new model without less meaningful variables and check if it is more accurate (may not because removing one variable can have impact on the others).
+
+****************************
+
+So let's predict values of x1500 time results with our model.
+We can see fitted values which are the predicted value for real response values.
+For instance, we can predict the time made on x1500 by a runner know it x400m time result. Imagine it's 60 seconds
+Then predicted x1500 time will be, with our model, 321.911 seconds. 
+
+Confidence interval is [290.6517 353.1702] confidence interval so with 95% of confidence the mean of x1500 time with given x400 times will be between 290.6517 and 353.1702 seconds. This is interesting but is not talking about our current and single run prediction with x400m 60 seconds run (it talks about the mean behaviour of all potantial x1500 times with x400 time being 60 seconds).
+
+Prediction interval is the one that says us, with 95% on our case, that the current and alone x1500 real result will lay between that prediction interval. If we compute it it [283.7836 360.0384]. So we have predictd that it will do x1500 on 321.911 seconds knowing that real time wil be ith 95% of confidence between 283.7836 seconds and 360.0384 seconds.
+
+****************************

@@ -20,17 +20,11 @@ for (numericalVarIdx in 1:lastNumericalVarIdx) {
 
 j400=5
 #Model 001
-model01<-lm(decathlon[,j1500]~decathlon[,j400],
+model01<-lm(x1500~x400m,
             data=decathlon)
 summary(model01)
 scatterplot(decathlon[,j1500]~decathlon[,j400],regLine=model01,
             smooth=FALSE,data=decathlon)
-
-#Model 001
-model01<-lm(decathlon[,j1500]~decathlon[,j400],
-          data=decathlon)
-summary(model01)
-
 
 ### Test of Regression Assumptions ###
 ### 1. Normality of the Error Term ###
@@ -47,3 +41,14 @@ plot(residuals(model01))
 dwtest(model01, alternative = "two.sided")
 # There is not an autocorrelaiton in the data set (p>0.05).
 # The errors/observations are independent.
+
+############################################
+#We can take a look of fitted values, predicted values of
+#response values and their confidence interval
+predict.lm(model01,interval="confidence")
+
+#So we could predict x1500 time result of some athlete
+#if x400 time has been 6 seconds
+newRunner=data.frame(x400m=60)
+predict.lm(model01,newdata=newRunner,interval="confidence")
+predict.lm(model01,newdata=newRunner,interval="prediction")
