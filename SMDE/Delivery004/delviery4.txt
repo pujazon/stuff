@@ -1,9 +1,54 @@
 So let's see the correlation matrix to see the correlations between variables.
-There are some high correlations as x1500 and Rank points, or Rank and Points, POle.vault and x100...
 
-So doing the PCA we see that taking three principal components which influyes over 66%.
+There are some high correlations as x1500 and Rank points, or Rank and Points, Pole.vault and x100...
+So doing the PCA we see that proportion of variance of first three principal components explain the 66% variance of the response, enough good for thumb rule. Then we choose these three principal components as candidates to our hypothetical model. We have to work with correlation matrix en vez de covariance matrix because we have different units on dataset (on x100 we have seconds but on High.jump we have meters...)
 
+Scree plot shows that elbow is on second component. Problem is that proportion of variance of first and second components are enough lower in absolute terms that make that even elbow is on second component, they don't explain enough variance for us. That's why we also take the third one. [plot]
+
+*************
 Before wokring more with that PCA, we have to ensure of assumptions of PCA.
 
-Printing the Variable factor map plot, we see how near each vector component from the others. And we can see how x1500 variable and Long.jump has more or less all the other vectors at the same distance and quite spread, so this component doesn't make sensto be group with any other components. On the other side Javeline, Discuss,Shot.put and High.jump are quite near so this ones could be joined on one derived component and x400m, x110m.hurdle, Rank and x100 are near too, so can be joined too.
+About Z we perform Bartlett's Test of Spherecity We obtain a p-value of 5.11907e-70
+It's clearly lower than 0.05 critical value. Then we reject the null hypothesis saying that correlation matrix si not the identity and the variables are related.
+
+Second one, KMO tests, results 0.14. This means that we cannot apply PCA directly and we have to do Y.
+
+*************
+
+So let's see how much is loaded each sport test type(x1500, x400...). So taking a look on loadings. It's quite distributed and there are too many numbers so it's difficult to take conclusions from it. In order to do that let's use the Biplot which will be more or less enough to understand how PC1 and PC2 (we have choosen 3 so it's quite near to whole model definition) explain each sport type competition.
+
+For example, Points and Rank are not exlpained by second component for example and x1500 is not explained by first one.
+Long.jump and x400 are the ones that are more near to the absolute one on each component. This means that they are well defined on our model. On the other side the ones that are more near to 0 value of first component, the one that explains the 32% of the sport type, (and less of the second) is the one worst explained on model: x1500m.
+
+Our model on previous question predicts x1500 times on function of x400 results. x1500 is defined full by second variable and x400 is the one that's most defined by second component so that's why it was the one variable that fit better on linear regresion model that has x1500 as response.
+
+On the other side Javeline, Discuss, Shot.put and High.jump are explained on the same way by PC1 and PC2, and also happens with x400m, x100 and x100.hurdle. So we can join them in 2 groups.
+
+Also (less important) see easily some results of runners (independant variables) for each dependant variable. pe: Casarsa has the worst time on x400 (and also with difference respect others) or Karpov, Clay and Sevrel are the ones that have better point scores.
+*************
+We want to construct a linear regression model to predict the points of each athlete. To do so you must first decide the number of principal components to be included in the regression as independent variables.
+
+So our response will be points the  we have potentially 12 variables to define it. Let's do a PCA to get the principal variables and choose the ones that define better the model, define it and check its quality.
+ 
+Good values of different sport competition could have different directions depending on if big or small value is "good" or not. So in order to get a good model we have to get all the variables with the same behaviour (we decided positive, bigger numbers are good values).
+This happens on races for example.
+
+So let's see the correletion between independant variables in order to know which variables have to be placed on our model (the ones that have linear relationship). Most of them follow linearity, even is quite few, but some ones like Y not.
+Now let's do the model that has Points as response. All variables are significant except Competition and Rank. It could be intuitively make sense that Rank and Competition are not significant because points are taken from the sport competitions.
+So lets do our model again without that 2 variables.
+Our new model explains 99.9% of variation on Points, so perfect, and residual standard error is 3.449 (less than first model).
+
+In order to do a new model with less variables, let's apply PCA analisis done before. So our model will be:
+(Intercept) 8005.3659     9.9926 801.128   <2e-16 ***
+PC1          152.1889     4.5807  33.224   <2e-16 ***
+PC2            0.3998     7.5751   0.053   0.9582    
+PC3           17.8926     8.4007   2.130   0.0399 
+
+(?) Prguntarle a ella PC2 no pero expica el 16%?
+
+
+
+
+
+
 
