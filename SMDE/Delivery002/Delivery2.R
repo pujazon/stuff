@@ -58,13 +58,13 @@ data=mergeRows(df1, df2, common.only=FALSE)
 data=mergeRows(as.data.frame(data), df3, common.only=FALSE)
 
 ### ANOVA on simulated data ####
-AnovaModel.1 <- aov(x1 ~ x2, data=data)
-summary(AnovaModel.1)
+A1 <- aov(x1 ~ x2, data=data)
+summary(A1)
 
 #Checking assumptions
-dwtest(AnovaModel.1, alternative ="two.sided")
-shapiro.test(residuals(AnovaModel.1))
-bptest(AnovaModel.1)
+qqnorm(residuals(A1))
+plot(residuals(A1))
+print(dwtest(A1,alternative="two.sided"))
 
 #########################################################
 #Red and White Wine Quality
@@ -88,14 +88,12 @@ wIdEnd<-(wIdIni+wRows-1)
 whiteDS$ID<-(wIdIni:wIdEnd)
 whiteDS$Type<-c("White")
 
-
 RW=mergeRows(redDS, whiteDS, common.only=FALSE)
-#RW <- rbind(redDS,whiteDS)
 RW$WineQuality<- cut(RW$quality,c(1,4.99,6,10))
 levels(RW$WineQuality)<-c("Low","Medium","High")
 
 #Variables and constants
-lastChemicIdx<-13
+lastChemicIdx<-12
 qualityIdx<-15
 typeIdx<-14
 
@@ -107,13 +105,11 @@ for (chemic in 1:lastChemicIdx) {
   print("1. Datasets are too big, so probabilities are 
         too small, each value is significant")
   #print(shapiro.test(residuals(RW[,chemic])))
-  #print(dwtest(AnovaModel.1,alternative="two.sided"))
   #print(bptest(AnovaModel.1))
   print("1. Check Anova assumptions with plots")
-  #Normality
-  #hist(residuals(AnovaModel.1))
-  #Homogenity of variance
-  #plot(residuals(AnovaModel.1))
+  qqnorm(residuals(AnovaModel.1))
+  plot(residuals(AnovaModel.1))
+  print(dwtest(AnovaModel.1,alternative="two.sided"))
   
   print(summary(AnovaModel.1))
   print("************************")
@@ -123,19 +119,44 @@ for (chemic in 1:lastChemicIdx) {
 for (chemic in 1:lastChemicIdx) {
   print("************************")
   print(paste0("2. Chemical prop: ", chemic))
-  m1 <- aov(RW[,chemic]~RW[,typeIdx], data=RW)
+  m1 <- aov(RW[,1]~RW[,15], data=RW)
   summary.aov(m1)
 
   print("2. Datasets are too big, so probabilities are 
         too small, each value is significant")
-  #print(shapiro.test(residuals(RW[,chemic])))
-  #print(dwtest(AnovaModel.1,alternative="two.sided"))
-  #print(bptest(AnovaModel.1))
   print("2. Check Anova assumptions with plots")
-  #print(leveneTest(RW[,chemic]~RW[,typeIdx],data=RW))
-  #print(bptest(AnovaModel.1))
-  #qqnorm(residuals(AnovaModel.1))
+  qqnorm(residuals(m1))
+  plot(residuals(m1))
+  print(dwtest(m1,alternative="two.sided"))
   
-  print(summary(AnovaModel.1))
+  print(summary(m1))
   print("************************")
 }
+
+
+### Alcohol affectance by type and quality
+m3<-aov(alcohol~Type+WineQuality,data=RW)
+summary(m3)
+qqnorm(residuals(m3))
+plot(residuals(m3))
+print(dwtest(m3,alternative="two.sided"))
+
+m6<-aov(alcohol~Type+WineQuality+Type*WineQuality,data=RW)
+summary(m6)
+qqnorm(residuals(m6))
+plot(residuals(m6))
+print(dwtest(m6,alternative="two.sided"))
+
+
+### Fixed acidity affectance by type and quality
+m4<-aov(fixed.acidity~Type+WineQuality,data=RW)
+summary(m4)
+qqnorm(residuals(m4))
+plot(residuals(m4))
+print(dwtest(m4,alternative="two.sided"))
+
+m5<-aov(fixed.acidity~Type+WineQuality+Type*WineQuality,data=RW)
+summary(m5)
+qqnorm(residuals(m5))
+plot(residuals(m5))
+print(dwtest(m5,alternative="two.sided"))

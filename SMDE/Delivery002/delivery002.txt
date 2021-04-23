@@ -1,20 +1,22 @@
-Generate three populations that follow a normal distribution, using your own algorithm. As an example, the first is a population that follows a normal distribution with a parameter mean=0, the second with mean=10, and the third with mean=0. Select the SAME variance for the three distributions at your convenience (a value >0).
-We want to analyze using an ANOVA if these three populations are different (or not) depending on the parameter selected.
-Analyze and explain the results obtained. Justify your answers.
-
-dis1<-rnorm(50, mean=10, sd=0.1)
-dis2<-rnorm(50, mean=8, sd=0.7)
-dis3<-rnorm(50, mean=12, sd=2)
-
 1.)
 Anova lets you to know if 1 (or more than one) variable with K groups (discrete one) is influenced by a continous variable (then each group has it's own population). so we will use it in order to see if any of the chemical properties (random continous variables) influence on wine type (categorical variable). Medium will be the reference group of the 3 groups (k=3). We have 11 continous variables to see if have some influence on wine type.
 Then, on one-way anova the null hypothesis will be all means are equal while alternate hypothesis it's some of them is different.
 
+2. 
 First, we have to preprocess data set in order to get a table where each row is one of the categories (Low, Medium or High) and each row will have all chemical samples of each category.
-When we have all data, we have to ensure that ANOVA assumptions are true. We will run Durbin Watson, Shapiro and Breusch Pagan test to confirm it.
-(The observations within each sample must be independent, populations from which the samples are selected must be normal and the populations from which the samples are selected must have equal variances (homogeneity of variance)).
 
-R script prints per console what has been saved on delivery2_001.txt file.
+First of all them we perform ANOVA test with quality as categorical variable and all the other numerical variable one by one as a response. If we take all the summaries we see that for all chemical properties p-value is lower tha 0.05. This means that all ANOVA null hypothesis, that all means of the populations have the same mean, are rejected and then all chemical properties are influenced by wine quality.
+(All results comming from R scrupt are on W)
 
-In each anova test, the assumptions between all populations are false. Saphiro test all in all has not been able to be launched because has more than 5000 residual samples.
-On all anova tests, probability of test stadistic value is lower than p-value, then rejects each null hypothesis concluding that quality type is independent of any chemical characteristic.
+For each ANOVA test we have test that ANOVA assumptions are true. Running tests (like  Durbin Watson, Shapiro and Breusch Pagan) values are not significant (or even on Shapiro test it doesn't work). This happens because data set it's too big and tests don't give us significant values for that cases. So we will have to display plots in order to confirm that. Normality is checked by qq-plots. In our cases, all of them follow more or less linearity (een there are outlayers values and is not folowing identity function which means that it's a little bit sweked). Homogenity variance can be seen with a plot and if data is wide spread over the area. This happens in all scenarios so we confirm it. 
+
+Now we do the same as beore but with type as categorical variable. The behaviour is the same as with quality, all ANOVA p-values for each chemical property are lower than 0.05 so all chemical properties are influenced by type.
+
+3. In order to see affect of alcohol by type and quality together we have 2 categorical variables and 1 numerical. Here make sense use Two Way ANOVA. ANOVA summary shows us that both p-values are lower than 0.05 so we can say that alcohol is affected by both type and quality.
+
+In order to know if both type and quality together affect to alcohol, we have to perform Two Way ANOVA with interaction term WineType*Quality. It's greater to 0.05 accepting the null hypothesis so both together doesn't affect alcohol.
+
+4. 
+
+Here we have to do the Two Way anova with fixed.acidity as response variable. Getting the summary we see that type p-value is below 0.05 value while Wine Quality is 0.18. This means that fixed acidity is influenced by type (Red/White) but not by Wine Quality.
+Finally we have to see the affectance of acidity with both type and quality together. Adding WineType*Quality interaction term on Two Way ANOVA we have a p-value below of 0.05 so both Type and wine together affect on wine fixed.acidity.
