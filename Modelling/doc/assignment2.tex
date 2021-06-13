@@ -38,8 +38,8 @@ First name \textsc{Daniel Pujazon Bonet}\\
 \vspace{5mm}
 \subsection {Define, for each factor (from 1 to 5) a distribution (the RVGs that you prefer, uniform, normal, exponential, etc.). For the factors 6 to 10 define a function that uses the previous variables, as an example F6=F1+2F3.}
 \subsection {Define an answer variable that will be composed by a function that combines a subset of the previous factors plus a normal distribution you know (to add some random noise).}
-The data stream is generated through the attached DataGen.cpp file and it's save it on a .csv file called DataSet.csv (also there's a .txt file).
-(Comment each factor which distribution has followed).
+The data stream is generated through the attached DataGen.cpp file and it's save it on a .csv file called DataSet.csv (also there's a .txt file).\\
+Take note that factors indexing (nomenclature) will start from 0. So the first 5 factors, defined by probability distributions, are F0, F1, F2, F3 and F4. The rest F5, F6, F7, F8, F9 and F10 are the factors resulting on a linear combination of the first 5 factors being the F10 the ASNWER output variable.
 
 \section {Obtain an expression to generate new data.}
 \vspace{5mm}
@@ -65,6 +65,13 @@ Answer = 5.00e+00(X1)-3.00e+00(X2)-5.00e+00(X3)-1.18e-06(X4)+1.00e+00(X5)
 
 \subsection {Describe what you find on this analysis and, explain if it is coherent with the knowledge you have from the data.}
 (Confirm it, both PCA and LRM doing "test", input the data of 5 factors and get the output).
+\begin{itemize}
+\item  First of all, the scree plot is coherent with the fact that from Factor6 to Factor10 are totally and only dependant on the first 5 factors.
+\item Also is coherent that F8,F6 and F7 are strongly correlated with F3, F2 and F1. Their definitions are: F6=$F1 + 3*F3$; F7=$2*F2 + 3*F2$; F8=$F3 - F1$
+\\The signs inside each function also explains why, for example, F8 is negative correlated with F1.
+\item On the same way correlation between F5, F9 with F0 and F4 make sense:
+F5=$4*F0 + F4$; F9=$F4 - F0$.
+\end{itemize}
 
 \subsection {Use a simulation model to generate new data. The simulation model will be a very simple model composed by one server by each one of the factors you use on the answer.}
 (First let's specify that we are gonna to do a $v*2^{k}$ factory design. Then define the maximum and minimum value for each factor of the LRM. Finally do the GPSS and explain how is performed.)
