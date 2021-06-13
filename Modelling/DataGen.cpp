@@ -33,9 +33,14 @@ double ANSWER(int i) {
 
 void dump2csv(void) {
   std::ofstream out("Dataset.csv");
-  for (int i=0; i < nIndividuals; ++i) {
+  for (int i=-1; i < nIndividuals; ++i) {
     for (int j=0; j < nFactors+1; ++j) {
-      out << DataSet[i][j] << ',';
+	  if (i < 0) {
+		std::string label = "Factor " + std::to_string(j);
+		out << label << ','; 
+	  } else {
+        out << DataSet[i][j] << ',';
+	  }
     }
     out << '\n';
   }
