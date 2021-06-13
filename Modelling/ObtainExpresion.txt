@@ -1,0 +1,18 @@
+With plot we can say the:
+
+* F3, F8, F6, F1, F7 and F2 are strong correlated. F3,F8 and F6 are positive correlated while F1, F7 and F2 are negative correlated.
+
+* On the other side, F0, F5, F4 and F9 are strong and positive correlated.
+
+* Each group angle respect to one of the axis is near to 0, what means that these group is fully explained only by one PC: First group (F3,F8...) is almost parallel to y-axis, PC2, while second one (F0, F5...) is almost parallel to x-axis, PC1. 
+This means that the other-PC group variables has no effect (because they're independant or because the impact of the other variable on the result it's too weak) on the value of the ohter-PC group vairables (pe: F5 value is not significantly determined by F3, F6 is not determined by F0... and so on)
+
+* Scree plot show us that we need at least 4 variables to explain more than the 80% of the system variables variation (even if we go further, with 5 variables we explain 100% of variability so this means that from 6th variable, which explain 0% of the variance, are full explained by the other variables).
+
+* So, knowing that there are 5 variables that explain 100%, we could do all the possible LRM using 5 of the 10 variables (which would be 252, combination without repetitions of 10 elements taken from 5 to 5) and we will get the one that fit better. 
+
+A LRM with all variables of course exlpain 100% of the variation on answer.
+A LRM2 with all the first 5 variables explain also the 100%, so these was the combination desired from the 252 potential combinations.
+On LRM3 if we only take the first 4 factors (as scree plot conclusions). With that we only can explain the 78%, so we will use the LRM2:
+
+Answer = 5.00e+00(X1)-3.00e+00(X2)-5.00e+00(X3)-1.18e-06(X4)+1.00e+00(X5)
