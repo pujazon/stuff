@@ -8,11 +8,15 @@ pca<-PCA(Dataset[,-12])
 pca$eig
 plot(pca$eig[,1], type="o", main="Scree Plot")
 
-#Do model
-
+#Do models for Answer
 LRM2<-lm(Factor.10~Factor.1+Factor.2+Factor.3
-        +Factor.4+Factor.5, data=Dataset)
+         +Factor.4+Factor.5, data=Dataset)
 summary(LRM2)
+
+
+LRM4<-lm(Factor.10~Factor.0+Factor.1+Factor.2
+         +Factor.3+Factor.4, data=Dataset)
+summary(LRM4)
 
 #FullFactory 2k max and min values for each factor
 maxF1=max(Dataset[,1])

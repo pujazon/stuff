@@ -58,10 +58,13 @@ This means that the other-PC group variables has no effect (because they're inde
 So, knowing that there are 5 variables that explain 100\%, we could do all the possible LRM using 5 of the 10 variables (which would be 252, combination without repetitions of 10 elements taken from 5 to 5) and we will get the one that fit better. \\
 
 A LRM with all variables of course exlpain 100\% of the variation on answer.
-A LRM2 with all the first 5 variables explain also the 100\%, so these was the combination desired from the 252 potential combinations.
-On LRM3 if we only take the first 4 factors (as scree plot conclusions). With that we only can explain the 78\%, so we will use the LRM2:
+A LRM2 with all the F1,F2,F3,F4,F5 (without F0) variables explain also the 100\%.
+On LRM3 if we only take the first 4 factors (as scree plot conclusions). With that we only can explain the 78\%, so we will use the or LRM2 or LRM4. Take a look that p-value is higher than accepted value so we won't use it:\\
+$(LRM2) Answer = +5(X1)-3(X2)-5(X3)-1.18*10^{-6}(X4)+(X5)$\\
+$(LRM4) Answer = +4(X0)+5(X1)-3(X2)-5(X3)+(X4)$\\
 
-Answer = 5.00e+00(X1)-3.00e+00(X2)-5.00e+00(X3)-1.18e-06(X4)+1.00e+00(X5)
+If we compare both, all variables on both LRM have the same p-value (so more or we see that LRM2 X4 has bigger p-value than X3 on LRM3. Also residual standrad error on LRM4 is smaller than LRM2, so we would pick LRM2 instead of LRM4. The last check between two models can be apply the inputs from DataSet and compare both outputs with the DataSet answer. This is made on DataGen.cpp and dumped on testLRM.txt. We can see how LRM4 outputs are more near to answer than LRM2. So let's use LRM4.
+
 
 \subsection {Describe what you find on this analysis and, explain if it is coherent with the knowledge you have from the data.}
 (Confirm it, both PCA and LRM doing "test", input the data of 5 factors and get the output).
@@ -71,9 +74,26 @@ Answer = 5.00e+00(X1)-3.00e+00(X2)-5.00e+00(X3)-1.18e-06(X4)+1.00e+00(X5)
 \\The signs inside each function also explains why, for example, F8 is negative correlated with F1.
 \item On the same way correlation between F5, F9 with F0 and F4 make sense:
 F5=$4*F0 + F4$; F9=$F4 - F0$.
-\end{itemize}
+\item If we calculus theoretically the Answer function, this is X which can be decomposed on the independant factors, we have the same one as the LRM4.
 
+\end{itemize}
+\newpage
 \subsection {Use a simulation model to generate new data. The simulation model will be a very simple model composed by one server by each one of the factors you use on the answer.}
-(First let's specify that we are gonna to do a $v*2^{k}$ factory design. Then define the maximum and minimum value for each factor of the LRM. Finally do the GPSS and explain how is performed.)
+Let's implement using GPSS the simulation model. For doing that we will use a $2{k}$ full factorial design.\\
+\noindent\begin{minipage}{0.3\textwidth}% adapt widths of minipages to your needs
+  \includegraphics[scale=0.4]{scenariosFullFactor.png}
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.6\textwidth}\raggedright
+ Then, the first thing we have to do is define the maximum and minimum values for each factor. We will take the maximum and minimim values, taking  care because F5 can have a big variance, from the empricial results (even we could also taken knowing the potential values that each distribution can generate. This is on ObtainExpresion.R):\\
+\begin{itemize}
+\item For Factor 1: (+):= 89.73; (-):= 12.50.
+\item For Factor 2: (+):= 00.95; (-):= 6.25e-07.
+\item For Factor 3: (+):= 49.97; (-):= 20.02.
+\item For Factor 4: (+):= 02.16; (-):= 1.37.
+\item For Factor 5: (+):= 2260.08; (-):= -876.
+\end{itemize}
+This means that, at least with our current design, we have 32 scenarios (on the truth table the '0' means the minimum value, (-), while the one is the maximum, (+)).
+\end{minipage}
 
 \end{document}

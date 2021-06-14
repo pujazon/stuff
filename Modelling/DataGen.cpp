@@ -60,6 +60,18 @@ void dump2screen(void) {
 }
 
 
+void testLRM(void) {
+  double answerLRM2;
+  double answerLRM4;
+  std::ofstream out("testLRM.txt");
+  for (int i=0; i<nIndividuals; ++i) {
+    answerLRM2 = +5*DataSet[i][1] - 3*DataSet[i][2] - 5*DataSet[i][3] + ((-1.18*(10^(-6)))*DataSet[i][4]) + DataSet[i][5];
+    answerLRM4 = +4*DataSet[i][0] +5*DataSet[i][1] - 3*DataSet[i][2] - 5*DataSet[i][3] + DataSet[i][4];
+    out << "Reference:: " << DataSet[i][10] << " || LRM2:: " << answerLRM2 << " || LRM4:: " << answerLRM4 << std::endl;
+  }
+
+}
+
 int main() {
 
   std::default_random_engine generator;
@@ -88,6 +100,8 @@ int main() {
 
   dump2screen();
   dump2csv();
+
+  testLRM();
 
   return 0;
 }
