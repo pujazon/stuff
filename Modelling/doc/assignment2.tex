@@ -48,13 +48,16 @@ You need to explore it because you want to define a model to obtain new data for
 \subsection {Explore the possible relations of all the factors and the answer variable, you can use any technique developed during the course (LRM or ANOVA).}
 
 We are gonna to do a PCA due to know the iterrelation between the different factors. After that we will generate some Linear Regresion models (LRM) and we will take the one that fits better our requirements. All will be made through the R script ObtainExpresion.r\\
-So, applying PCA to the DataSet.csv we have found:
+So, applying PCA to the DataSet.csv we have found:\\
+\textbf{TODO: Image PCA}
 \begin{itemize}
-\item F3, F8, F6, F1, F7 and F2 are strong correlated. F3,F8 and F6 are positive correlated while F1, F7 and F2 are negative correlated.\\ On the other side, F0, F5, F4 and F9 are strong and positive correlated.
+\item After PCA (graph place above) we see that F3, F8, F6, F1, F7 and F2 are strong correlated. F3,F8 and F6 are positive correlated while F1, F7 and F2 are negative correlated.\\ On the other side, F0, F5, F4 and F9 are strong and positive correlated.
 \item Each group angle respect to one of the axis is near to 0, what means that these group is fully explained only by one PC: First group (F3,F8...) is almost parallel to y-axis, PC2, while second one (F0, F5...) is almost parallel to x-axis, PC1. 
 This means that the other-PC group variables has no effect (because they're independant or because the impact of the other variable on the result it's too weak) on the value of the ohter-PC group vairables (pe: F5 value is not significantly determined by F3, F6 is not determined by F0... and so on)
-\item Scree plot show us that we need at least 4 variables to explain more than the 80\% of the system variables variation (even if we go further, with 5 variables we explain 100\% of variability so this means that from 6th variable, which explain 0\% of the variance, are full explained by the other variables).
+\item Scree plot (placed below) show us that we need at least 4 variables to explain more than the 80\% of the system variables variation (even if we go further, with 5 variables we explain 100\% of variability so this means that from 6th variable, which explain 0\% of the variance, are full explained by the other variables).
 \end{itemize}
+\textbf{TODO: Scree Plot}
+\\
 So, knowing that there are 5 variables that explain 100\%, we could do all the possible LRM using 5 of the 10 variables (which would be 252, combination without repetitions of 10 elements taken from 5 to 5) and we will get the one that fit better. \\
 
 A LRM with all variables of course exlpain 100\% of the variation on answer.
@@ -63,18 +66,18 @@ On LRM3 if we only take the first 4 factors (as scree plot conclusions). With th
 $(LRM2) Answer = +5(X1)-3(X2)-5(X3)-1.18*10^{-6}(X4)+(X5)$\\
 $(LRM4) Answer = +4(X0)+5(X1)-3(X2)-5(X3)+(X4)$\\
 
-If we compare both, all variables on both LRM have the same p-value (so more or we see that LRM2 X4 has bigger p-value than X3 on LRM3. Also residual standrad error on LRM4 is smaller than LRM2, so we would pick LRM2 instead of LRM4. The last check between two models can be apply the inputs from DataSet and compare both outputs with the DataSet answer. This is made on DataGen.cpp and dumped on testLRM.txt. We can see how LRM4 outputs are more near to answer than LRM2. So let's use LRM4.
-
+If we compare both, all variables on both LRM have the same p-value (so more or we see that LRM2 X4 has bigger p-value than X3 on LRM3. Also residual standrad error on LRM4 is smaller than LRM2, so we would pick LRM2 instead of LRM4.\\
+The last check between two models will be based on code them and operational validate with the system applying the inputs from DataSet and compare both outputs with the DataSet answer. This is made on DataGen.cpp and dumped on testLRM.txt. We can see how LRM4 outputs are more near to answer than LRM2. So let's use LRM4. \\
+\textbf{TODO: Test LR hipothesis on R}
 
 \subsection {Describe what you find on this analysis and, explain if it is coherent with the knowledge you have from the data.}
-(Confirm it, both PCA and LRM doing "test", input the data of 5 factors and get the output).
 \begin{itemize}
 \item  First of all, the scree plot is coherent with the fact that from Factor6 to Factor10 are totally and only dependant on the first 5 factors.
 \item Also is coherent that F8,F6 and F7 are strongly correlated with F3, F2 and F1. Their definitions are: F6=$F1 + 3*F3$; F7=$2*F2 + 3*F2$; F8=$F3 - F1$
 \\The signs inside each function also explains why, for example, F8 is negative correlated with F1.
 \item On the same way correlation between F5, F9 with F0 and F4 make sense:
 F5=$4*F0 + F4$; F9=$F4 - F0$.
-\item If we calculus theoretically the Answer function, this is X which can be decomposed on the independant factors, we have the same one as the LRM4.
+\item If we calculus theoretically the Answer function ,being decomposed on the independant factors, we obtan the same one as LRM4.
 
 \end{itemize}
 \newpage
@@ -84,7 +87,34 @@ F5=$4*F0 + F4$; F9=$F4 - F0$.
 \end{minipage}%
 \hfill%
 \begin{minipage}{0.6\textwidth}\raggedright
- Then, the first thing we have to do is define the maximum and minimum values for each factor. We will take the maximum and minimim values, (F5 has significant outliers so we take the minimum and maximum value at least with a 1\% of frequency to appear), from the empricial results (even we could also taken knowing the potential values that each distribution can generate. This is on ObtainExpresion.R):\\
+We are going to implement the model defined previously with GPSS World. For doing that we will base on the 2k factorial design explained on the following section. It's the attached file M2.gps and has been deployed with GPSS World.\\
+The idea is, you define which scenario are you going to simulate on the SCENARIO variable according to the truth table (pe: SCENARIO 3 means F0 (-), F1 (-), F2 (-), F3 (+), F4(+). Then there's a function for each Factor which has the value, already calculated, for both (+) and (-) scenarios. First attempt was using queues (interpreting factors values as time) but distributions give us negative times so it make no sense. Then it's assigned to a ANSWER variable and dumped. Also added uniform random noise.\\
+\end{minipage}
+
+
+\section {DOE}
+\vspace{5mm}
+\textbf{Now you have a model to generate new data. This model can be used to generate data for the different scenarios that must be considered.}
+\subsection {Define a DOE to explore with what parametrization of the 10 factors the answer obtains the best value (define what means best, i.e. maximize or minimize the value).}
+\subsection {Detect and analyze the interactions.}
+Let's do step by step
+
+\subsubsection{Experiment objectives.}
+What we have are different kinds of machines used for execute the program (the different factors). Inside each kind of machines some of them can be faster and some of them slower (that are the different levels that we see on each factor). So having one machine of each type, when we run a program it executes on a T time.\\
+The objective of the experiment is try to minimize the T time execution. This can be done if we know which kind of machine has the biggest effect on the execution time (also if there's relation between types of machines that are significant to the T execution time...).
+
+\subsubsection{Experiment process variables.}
+The dataset provided has different executions (rows) with 10 kinds of machines (factors), each one with a specific times (levels), and finally the T execution time (response variable). \\
+We don't know if there are any other issue on each kind of machine or somewhere that is affecting the T execution time, so we assum that degree of randomness out of these variables.\\
+With the system analysis done previosuly (the 1st point) we have seen that there are really only 5 kinds of machines that are significant on the T execution time. Then we are going to select that 5 different kinds of machines (A,B,C,D,E) as the process variable. Of course the T execution time is the response variable.
+
+
+With all that system analysis we have been able to generate a model and we have been validated it after coding with GPSS (and in C) using the different values from dataset and comaprining them with the DataSet answers.
+
+\subsubsection{Experimental design}
+Firstly we want to see the global overview picture about the effect of each kind of machine and also the interactions between them. We can use a full factorial design. But seeing the dataset we realize that there are a lot of levels for each factor so it's not feasible. Then we deploy a 2k factorial design.\\
+
+So, we have to define the maximum and minimum values for each factor. We will take the maximum and minimim values, (F5 has significant outliers so we take the minimum and maximum value at least with a 1\% of frequency to appear), from the empricial results (even we could also taken knowing the potential values that each distribution can generate. This is on ObtainExpresion.R):\\
 \begin{itemize}
 \item For Factor 1: (+):= 89.73; (-):= 12.50.
 \item For Factor 2: (+):= 00.95; (-):= 6.25e-07.
@@ -93,14 +123,55 @@ F5=$4*F0 + F4$; F9=$F4 - F0$.
 \item For Factor 5: (+):= 31.1965; (-):= -20.162.
 \end{itemize}
 This means that, at least with our current design, we have 32 scenarios (on the truth table the '0' means the minimum value, (-), while the one is the maximum, (+) and A,B,C,D,E are the F0, F1, F2, F3, F4 factors respectively).\\
-Knowing that we implement our model using GPSS the simulation model. It's the attached file M2.gps and has been deployed with GPSS World.\\
-\end{minipage}
-\\The idea is, you define which scenario are you going to simulate on the SCENARIO variable according to the truth table (pe: SCENARIO 3 means F0 (-), F1 (-), F2 (-), F3 (+), F4(+). Then there's a function for each Factor which has the value, already calculated, for both (+) and (-) scenarios. First attempt was using queues (interpreting factors values as time) but distributions give us negative times so it make no sense. Then it's assigned to a ANSWER variable and dumped. Also added uniform random noise.
 
 
-\section {DOE}
-\vspace{5mm}
-\textbf{Now you have a model to generate new data. This model can be used to generate data for the different scenarios that must be considered.}
-\subsection {Define a DOE to explore with what parametrization of the 10 factors the answer obtains the best value (define what means best, i.e. maximize or minimize the value).}
-\subsection {Detect and analyze the interactions.}
+\subsubsection{Experiment Independence, homoscedasticity, normality...}
+\textbf{TODO}
+\subsubsection{Result interpretation: Effects, interactions...}
+\textbf{TODO}
+So we are going to execute on 2 steps our 2k factorial design: First of all we are going to execute all scenarios 10 times (pilot test). With that, we will calculus the required extra executions of each scenario with the desired accureacy and execute them.
+The results of the 320 executions (10 times each scenario) are on X.csv:
+If we run all the 2k factorial design scenarios we got the following table:
+(A is F0, B is F1...)
+\begin{table}[]
+\begin{tabular}{llllll}
+A & B & C & D & E & T execution time \\
+- & - & - & - & - &      -30.222     \\
+- & - & - & - & + &      21.137      \\
+- & - & - & + & - &      -30.222     \\
+- & - & - & + & + &      21.137      \\
+- & - & + & - & - &      -120.072    \\
+- & - & + & - & + &      -68.713     \\
+- & - & + & + & - &      -120.072    \\
+- & - & + & + & + &      -68.713     \\
+- & + & - & - & - &      -25.472     \\
+- & + & - & - & + &      25.886      \\
+- & + & - & + & - &      -25.472     \\
+- & + & - & + & + &      25.886      \\
+- & + & + & - & - &      -115.322    \\
+- & + & + & - & + &      -63.964     \\
+- & + & + & + & - &      -115.322    \\
+- & + & + & + & + &      244.956     \\
++ & - & - & - & - &      278.698     \\
++ & - & - & - & + &      330.057     \\
++ & - & - & + & - &      278.698     \\
++ & - & - & + & + &      330.057     \\
++ & - & + & - & - &      188.848     \\
++ & - & + & - & + &      240.207     \\
++ & - & + & + & - &      188.848     \\
++ & - & + & + & + &      240.207     \\
++ & + & - & - & - &      283.448     \\
++ & + & - & - & + &      334.806     \\
++ & + & - & + & - &      283.448     \\
++ & + & - & + & + &      334.806     \\
++ & + & + & - & - &      193.598     \\
++ & + & + & - & + &      244.956     \\
++ & + & + & + & - &      193.598     \\
++ & + & + & + & + &      244.956         
+\end{tabular}\end{table}    
+
+Need to do replications
+
+Apply Yates algorithm
+
 \end{document}
