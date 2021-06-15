@@ -1,5 +1,6 @@
 #Libraries
 library(lmtest)
+library(FactoMineR)
 
 #Open Dataset file
 options(digits=3)
@@ -36,3 +37,27 @@ minF4=min(Dataset[,4])
 
 maxF5=max(Dataset[,5])
 minF5=min(Dataset[,5])
+
+
+### Test of Regression Assumptions ###
+### 1. Normality of the Error Term ###
+# Using QQ plot
+qqnorm(residuals(LRM4))
+# Since the values are taking part close to the diagonal, 
+#the distribution is approximately normal.
+
+### 2. Homogenity of Variance ###
+# Residual Analysis #
+plot(residuals(LRM4))
+# Residuals have a rectangular pattern around the zero mean.
+# There is no violation of this assumption.
+
+##Breusch Pagan Test
+bptest(LRM4)
+# H0 is accepted (p>0.05).
+# The homogenity of variances is provided.
+
+### 3. The independence of errors ###
+dwtest(LRM4, alternative = "two.sided")
+# There is not an autocorrelaiton in the data set (p>0.05).
+# The errors/observations are independent.

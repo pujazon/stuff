@@ -49,15 +49,27 @@ You need to explore it because you want to define a model to obtain new data for
 
 We are gonna to do a PCA due to know the iterrelation between the different factors. After that we will generate some Linear Regresion models (LRM) and we will take the one that fits better our requirements. All will be made through the R script ObtainExpresion.r\\
 So, applying PCA to the DataSet.csv we have found:\\
-\textbf{TODO: Image PCA}
+
 \begin{itemize}
-\item After PCA (graph place above) we see that F3, F8, F6, F1, F7 and F2 are strong correlated. F3,F8 and F6 are positive correlated while F1, F7 and F2 are negative correlated.\\ On the other side, F0, F5, F4 and F9 are strong and positive correlated.
+\item After PCA (Figure 1) we see that F3, F8, F6, F1, F7 and F2 are strong correlated. F3,F8 and F6 are positive correlated while F1, F7 and F2 are negative correlated.\\ On the other side, F0, F5, F4 and F9 are strong and positive correlated.
 \item Each group angle respect to one of the axis is near to 0, what means that these group is fully explained only by one PC: First group (F3,F8...) is almost parallel to y-axis, PC2, while second one (F0, F5...) is almost parallel to x-axis, PC1. 
 This means that the other-PC group variables has no effect (because they're independant or because the impact of the other variable on the result it's too weak) on the value of the ohter-PC group vairables (pe: F5 value is not significantly determined by F3, F6 is not determined by F0... and so on)
 \item Scree plot (placed below) show us that we need at least 4 variables to explain more than the 80\% of the system variables variation (even if we go further, with 5 variables we explain 100\% of variability so this means that from 6th variable, which explain 0\% of the variance, are full explained by the other variables).
 \end{itemize}
-\textbf{TODO: Scree Plot}
-\\
+\newpage
+\begin{figure}[!htb]
+    \centering
+	\includegraphics[scale=0.7]{pca.PNG}
+    \caption{Spatial density of space debris ranging from 1cm to 10cm.}
+    \label{top}
+\end{figure} 
+\begin{figure}[!htb]
+    \centering
+\includegraphics[scale=0.5]{screeploot.png}
+    \caption{Spatial density of space debris larger than 10cm.} 
+    \label{bottom}
+\end{figure} 
+\newpage
 So, knowing that there are 5 variables that explain 100\%, we could do all the possible LRM using 5 of the 10 variables (which would be 252, combination without repetitions of 10 elements taken from 5 to 5) and we will get the one that fit better. \\
 
 A LRM with all variables of course exlpain 100\% of the variation on answer.
@@ -68,8 +80,7 @@ $(LRM4) Answer = +4(X0)+5(X1)-3(X2)-5(X3)+(X4)$\\
 
 If we compare both, all variables on both LRM have the same p-value (so more or we see that LRM2 X4 has bigger p-value than X3 on LRM3. Also residual standrad error on LRM4 is smaller than LRM2, so we would pick LRM2 instead of LRM4.\\
 The last check between two models will be based on code them and operational validate with the system applying the inputs from DataSet and compare both outputs with the DataSet answer. This is made on DataGen.cpp and dumped on testLRM.txt. We can see how LRM4 outputs are more near to answer than LRM2. So let's use LRM4. \\
-\textbf{TODO: Test LR hipothesis on R}
-
+We also have tested the assumptions of linear regresion models (Can be seen on ObtainExpression.R)\\
 \subsection {Describe what you find on this analysis and, explain if it is coherent with the knowledge you have from the data.}
 \begin{itemize}
 \item  First of all, the scree plot is coherent with the fact that from Factor6 to Factor10 are totally and only dependant on the first 5 factors.
@@ -93,7 +104,7 @@ The REPETITIONS variable allows you to execute given SCENARIO as much as its spe
 Also added Random delay using RN1 that adds random noise to whole REPETITIONS executions of SCENARIO. We don't update it with RMULT so each new simulation follows the same random distribution, but random at the end.
 \end{minipage}
 
-
+\newpage
 \section {DOE}
 \vspace{5mm}
 \textbf{Now you have a model to generate new data. This model can be used to generate data for the different scenarios that must be considered.}
@@ -126,9 +137,6 @@ So, we have to define the maximum and minimum values for each factor. We will ta
 \end{itemize}
 This means that, at least with our current design, we have 32 scenarios (on the truth table the '0' means the minimum value, (-), while the one is the maximum, (+) and A,B,C,D,E are the F0, F1, F2, F3, F4 factors respectively).\\
 
-
-\subsubsection{Experiment Independence, homoscedasticity, normality...}
-\textbf{TODO}
 \subsubsection{Result interpretation: Effects, interactions...}
 So we are going to execute on 2 steps our 2k factorial design: First of all we are going to execute all scenarios 10 times (pilot test) which will give us some results with a fiven confidence interval. With that we can calculus the required extra executions of each scenario with the desired accureacy and execute them.\\
 The results of the 320 executions (10 times each scenario) are on Simulation1.csv.
@@ -137,6 +145,9 @@ With that 10 replications we already have a confidence interval smaller than 5\%
 
 Now due to see the effect of each machine type and also the interactions between them, we can apply Yates algorithm (calculated with Yates.csv and also bigger):
 (A is F0, B is F1...)
+We can see how machines of type F1 have the biggest impact on adding time while the machines of type F3 are the ones that improves at most the speed (as bigger the level on that factor is bigger the negative part will be).\\
+About interactions, we see that all have the same absolute value. This means that interactions between machines types has no significant effect on the T exe.\\
+\textbf{So we can conclude that if we have to priorize one type machine for decreasing the Texe when a program is executed on a enviroment where at least 1 machine of each type is needed, you have to minimize the value of the F3 type machines}
 
 \begin{table}[]
 \scalebox{0.77}{
