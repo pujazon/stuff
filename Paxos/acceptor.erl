@@ -28,6 +28,7 @@ acceptor(Name, Promised, Voted, Value, PanelId)
 end;
 
 {accept, Proposer, Round, Proposal} ->
+io:format("[DBG] {accept, ~w, ~w, ~w}\n", [Proposer, Round, Proposal]),
 case order:goe(Round, Promised) of
 true ->
 Proposer ! {vote, Round},

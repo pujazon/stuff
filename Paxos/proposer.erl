@@ -1,7 +1,7 @@
 -module(proposer).
 -export([start/6]).
--define(timeout, 2000).
--define(backoff, 10).
+-define(timeout, 5).
+-define(backoff, 1).
 
 start(Name, Proposal, Acceptors, Sleep, PanelId, Main) ->
 spawn(fun() -> init(Name, Proposal, Acceptors, Sleep, PanelId, Main) end).
@@ -30,6 +30,7 @@ case ballot(Name, Round, Proposal, Acceptors, PanelId) of
 abort ->
 timer:sleep(rand:uniform(Backoff)),
 Next = order:inc(Round),
+io:format("[DBG] Next ~w})\n", [Next]),
 round(Name, (2*Backoff), Next, Proposal, Acceptors, PanelId)
 end.
 
@@ -102,6 +103,7 @@ end.
 
 prepare(Round, Acceptors) ->
 Fun = fun(Acceptor) ->
+io:format("[DBG] send(~w, {prepare, ~w, ~w})\n", [Acceptor, self(), Round]),
 send(Acceptor, {prepare, self(), Round})
 end,
 lists:foreach(Fun, Acceptors).
