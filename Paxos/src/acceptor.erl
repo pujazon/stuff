@@ -1,6 +1,6 @@
 -module(acceptor).
 -export([start/2]).
--define(delay, 200).
+-define(delay, 1200).
 
 start(Name, PanelId) ->
 spawn(fun() -> init(Name, PanelId) end).
@@ -19,9 +19,11 @@ case order:gr(Round, Promised) of
 true ->
 
 T = rand:uniform(?delay),
+io:format("[DBG] Delay of ~w sec for Promise. \n", [T]),
 timer:send_after(T, Proposer, {promise, Round, Voted, Value}),
 
-Proposer ! {promise, Round, Voted, Value},
+%Comment as it's sent with delay on the above statement
+%Proposer ! {promise, Round, Voted, Value},
 io:format("[Acceptor ~w] Phase 1: promised ~w voted ~w colour ~w~n",
 [Name, Round, Voted, Value]),
 % Update gui

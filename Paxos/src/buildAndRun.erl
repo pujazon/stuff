@@ -4,7 +4,7 @@ c(proposer).
 c(gui).
 c(paxy).
 c(order).
-paxy:start([8000,1000,1500]).
+paxy:start([0000,3000,6000]).
 
 
 
