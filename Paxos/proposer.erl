@@ -1,7 +1,7 @@
 -module(proposer).
 -export([start/6]).
--define(timeout, 5).
--define(backoff, 1).
+-define(timeout, 2000). %If not received messages on 2 s, abort
+-define(backoff, 60000). %Begin new round after 60 s. So for this testcase, always round 0
 
 start(Name, Proposal, Acceptors, Sleep, PanelId, Main) ->
 spawn(fun() -> init(Name, Proposal, Acceptors, Sleep, PanelId, Main) end).
@@ -42,13 +42,13 @@ MaxVoted = order:null(),
 case collect(Quorum, Round, MaxVoted, Proposal) of
 {accepted, Value} ->
 io:format("[Proposer ~w] Phase 2: round ~w proposal ~w (was ~w)~n",
-[Name, Round, Value, Proposal]),
+[Name, Round, Proposal, Value]),
 % update gui
 PanelId ! {updateProp, "Round: " ++ io_lib:format("~p", [Round]), Value},
 accept(Round, Proposal, Acceptors),
 case vote(length(Acceptors), Round) of
 ok ->
-{ok, Value};
+{ok, Proposal};
 abort ->
 abort
 end;
@@ -57,26 +57,36 @@ abort
 end.
 
 collect(0, _, _, Proposal) ->
+io:format("[DBG] collect(0, _, _, Proposal) = ~w) OK. END \n", [Proposal]),
 {accepted, Proposal};
 
 collect(N, Round, MaxVoted, Proposal) ->
+io:format("---[DBG] collect(N = ~w, Round = ~w, MaxVoted = ~w, Proposal = ~w) -> \n", [N, Round, MaxVoted, Proposal]),
 receive
 {promise, Round, _, na} ->
+io:format("[DBG] Received {promise, Round = ~w, _, na} -> (MaxVoted = ~w) \n", [Round, MaxVoted]),
+io:format("[DBG] Send collect(N = ~w, Round = ~w, MaxVoted = ~w, Proposal = ~w) -> \n", [N - 1, Round, MaxVoted, Proposal]),
 collect(N - 1, Round, MaxVoted, Proposal);
 
 {promise, Round, Voted, Value} ->
+io:format("[DBG] Received {promise(Round = ~w, Voted = ~w, Value = ~w) -> \n", [Round, Voted, Value]),
 case order:gr(Voted, MaxVoted) of
 true ->
+io:format("[DBG] Send collect(N = ~w, Round = ~w, Voted = ~w, Value = ~w) -> \n", [N - 1, Round, Voted, Value]),
 collect(N - 1, Round, Voted, Value);
 false ->
+io:format("[DBG] Send collect(N = ~w, Round = ~w, MaxVoted = ~w, Proposal = ~w) -> \n", [N - 1, Round, MaxVoted, Proposal]),
 collect(N - 1, Round, MaxVoted, Proposal)
 end;
 
 {promise, _, _, _} ->
+io:format("[DBG] {promise, _, _, _} -> \n"),
+io:format("[DBG] Send collect(N = ~w, Round = ~w, Voted = ~w, Value = ~w) -> \n", [N, Round, MaxVoted, Proposal]),
 collect(N, Round, MaxVoted, Proposal);
 
 {sorry, {prepare, Round}} ->
-collect(N - 1, Round, MaxVoted, Proposal);
+%If we recieved a sorry, we cannot --N, as it means we have received
+collect(N, Round, MaxVoted, Proposal);
 
 %Then all the other potential sorry messages. The accept ones, for vote
 {sorry, _} ->
@@ -88,10 +98,13 @@ end.
 vote(0, _) ->
 ok;
 vote(N, Round) ->
+io:format("[DBG] vote(N = ~w, Round = ~w) -> \n", [N, Round]),
 receive
 {vote, Round} ->
+io:format("[DBG] recevied vote(Round = ~w) -> \n", [Round]),
 vote(N - 1, Round);
 {vote, _} ->
+io:format("[DBG] recevied vote(_) -> \n"),
 vote(N, Round);
 {sorry, {accept, Round}} ->
 vote(N - 1, Round);
