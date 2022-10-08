@@ -1,0 +1,209 @@
+TestConfig:
+-define(timeout, 300).
+-define(backoff, 10).
+-define(delay, 200).
+paxy:start([8000,1000,1500]).
+
+Hash: 385420306e4e673d77eacdfcc423a64fc9816c64
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+[Gui] state requested 
+<0.129.0>
+[Proposer kilgore] Phase 1: round {0,kilgore} proposal {0,255,0}
+[DBG] send(a, {prepare, <0.131.0>, {0,kilgore}})
+[DBG] send(b, {prepare, <0.131.0>, {0,kilgore}})
+[DBG] Acceptor [a, Promised = {0,0}] recv: {prepare, Proposer = <0.131.0>, Round = {0,kilgore}} 
+[DBG] send(c, {prepare, <0.131.0>, {0,kilgore}})
+[DBG] Acceptor [b, Promised = {0,0}] recv: {prepare, Proposer = <0.131.0>, Round = {0,kilgore}} 
+[Acceptor a] Phase 1: promised {0,kilgore} voted {0,0} colour na
+[DBG] send(d, {prepare, <0.131.0>, {0,kilgore}})
+[DBG] Acceptor [c, Promised = {0,0}] recv: {prepare, Proposer = <0.131.0>, Round = {0,kilgore}} 
+[Acceptor b] Phase 1: promised {0,kilgore} voted {0,0} colour na
+[DBG] send(e, {prepare, <0.131.0>, {0,kilgore}})
+[DBG] Acceptor [d, Promised = {0,0}] recv: {prepare, Proposer = <0.131.0>, Round = {0,kilgore}} 
+[Acceptor c] Phase 1: promised {0,kilgore} voted {0,0} colour na
+[DBG] collect(N = 3, Round = {0,kilgore}, MaxVoted = {0,0}, Proposal = {0,255,0}) -> 
+[DBG] Acceptor [e, Promised = {0,0}] recv: {prepare, Proposer = <0.131.0>, Round = {0,kilgore}} 
+[Acceptor d] Phase 1: promised {0,kilgore} voted {0,0} colour na
+[DBG] Received {promise, Round = {0,kilgore}, _, na} -> (MaxVoted = {0,0}) 
+[Acceptor e] Phase 1: promised {0,kilgore} voted {0,0} colour na
+[DBG] Send collect(N = 2, Round = {0,kilgore}, MaxVoted = {0,0}, Proposal = {0,255,0}) -> 
+[DBG] collect(N = 2, Round = {0,kilgore}, MaxVoted = {0,0}, Proposal = na) -> 
+[DBG] Received {promise, Round = {0,kilgore}, _, na} -> (MaxVoted = {0,0}) 
+[DBG] Send collect(N = 1, Round = {0,kilgore}, MaxVoted = {0,0}, Proposal = na) -> 
+[DBG] collect(N = 1, Round = {0,kilgore}, MaxVoted = {0,0}, Proposal = na) -> 
+[DBG] Received {promise, Round = {0,kilgore}, _, na} -> (MaxVoted = {0,0}) 
+[DBG] Send collect(N = 0, Round = {0,kilgore}, MaxVoted = {0,0}, Proposal = na) -> 
+[DBG] collect(0, _, _, Proposal) = na) OK. END 
+[Proposer kilgore] Phase 2: round {0,kilgore} proposal {0,255,0} (was na)
+[DBG] vote(N = 5, Round = {0,kilgore}) -> 
+[DBG] {accept, <0.131.0>, {0,kilgore}, {0,255,0}}:: Voted: {0,0} 
+[DBG] {accept, <0.131.0>, {0,kilgore}, {0,255,0}}:: Voted: {0,0} 
+[DBG] {accept, <0.131.0>, {0,kilgore}, {0,255,0}}:: Voted: {0,0} 
+[DBG] {accept, <0.131.0>, {0,kilgore}, {0,255,0}}:: Voted: {0,0} 
+[DBG] {accept, <0.131.0>, {0,kilgore}, {0,255,0}}:: Voted: {0,0} 
+[DBG] Proposer ! {vote, Round = {0,kilgore}} 
+[DBG] Proposer ! {vote, Round = {0,kilgore}} 
+[DBG] Proposer ! {vote, Round = {0,kilgore}} 
+[DBG] Proposer ! {vote, Round = {0,kilgore}} 
+[DBG] Proposer ! {vote, Round = {0,kilgore}} 
+[Acceptor a] Phase 2: promised {0,kilgore} voted {0,kilgore} colour {0,255,0}
+[DBG] recevied vote(Round = {0,kilgore}) -> 
+[Acceptor b] Phase 2: promised {0,kilgore} voted {0,kilgore} colour {0,255,0}
+[Acceptor c] Phase 2: promised {0,kilgore} voted {0,kilgore} colour {0,255,0}
+[Acceptor d] Phase 2: promised {0,kilgore} voted {0,kilgore} colour {0,255,0}
+[Acceptor e] Phase 2: promised {0,kilgore} voted {0,kilgore} colour {0,255,0}
+[DBG] vote(N = 4, Round = {0,kilgore}) -> 
+[DBG] recevied vote(Round = {0,kilgore}) -> 
+[DBG] vote(N = 3, Round = {0,kilgore}) -> 
+[DBG] recevied vote(Round = {0,kilgore}) -> 
+[DBG] vote(N = 2, Round = {0,kilgore}) -> 
+[DBG] recevied vote(Round = {0,kilgore}) -> 
+[DBG] vote(N = 1, Round = {0,kilgore}) -> 
+[DBG] recevied vote(Round = {0,kilgore}) -> 
+[Proposer kilgore] DECIDED {0,255,0} in round {0,kilgore} after 20 ms
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+[Proposer willard] Phase 1: round {0,willard} proposal {0,0,255}
+[DBG] send(a, {prepare, <0.132.0>, {0,willard}})
+[DBG] send(b, {prepare, <0.132.0>, {0,willard}})
+[DBG] Acceptor [a, Promised = {0,kilgore}] recv: {prepare, Proposer = <0.132.0>, Round = {0,willard}} 
+[DBG] send(c, {prepare, <0.132.0>, {0,willard}})
+[DBG] Acceptor [b, Promised = {0,kilgore}] recv: {prepare, Proposer = <0.132.0>, Round = {0,willard}} 
+[Acceptor a] Phase 1: promised {0,willard} voted {0,kilgore} colour {0,255,0}
+[DBG] send(d, {prepare, <0.132.0>, {0,willard}})
+[DBG] Acceptor [c, Promised = {0,kilgore}] recv: {prepare, Proposer = <0.132.0>, Round = {0,willard}} 
+[Acceptor b] Phase 1: promised {0,willard} voted {0,kilgore} colour {0,255,0}
+[DBG] send(e, {prepare, <0.132.0>, {0,willard}})
+[DBG] Acceptor [d, Promised = {0,kilgore}] recv: {prepare, Proposer = <0.132.0>, Round = {0,willard}} 
+[Acceptor c] Phase 1: promised {0,willard} voted {0,kilgore} colour {0,255,0}
+[DBG] collect(N = 3, Round = {0,willard}, MaxVoted = {0,0}, Proposal = {0,0,255}) -> 
+[Acceptor d] Phase 1: promised {0,willard} voted {0,kilgore} colour {0,255,0}
+[DBG] Acceptor [e, Promised = {0,kilgore}] recv: {prepare, Proposer = <0.132.0>, Round = {0,willard}} 
+[DBG] Received {promise(Round = {0,willard}, Voted = {0,kilgore}, Value = {0,255,0}) -> 
+[Acceptor e] Phase 1: promised {0,willard} voted {0,kilgore} colour {0,255,0}
+[DBG] Send collect(N = 2, Round = {0,willard}, Voted = {0,kilgore}, Value = {0,255,0}) -> 
+[DBG] collect(N = 2, Round = {0,willard}, MaxVoted = {0,kilgore}, Proposal = {0,255,0}) -> 
+[DBG] Received {promise(Round = {0,willard}, Voted = {0,kilgore}, Value = {0,255,0}) -> 
+[DBG] Send collect(N = 1, Round = {0,willard}, MaxVoted = {0,kilgore}, Proposal = {0,255,0}) -> 
+[DBG] collect(N = 1, Round = {0,willard}, MaxVoted = {0,kilgore}, Proposal = {0,255,0}) -> 
+[DBG] Received {promise(Round = {0,willard}, Voted = {0,kilgore}, Value = {0,255,0}) -> 
+[DBG] Send collect(N = 0, Round = {0,willard}, MaxVoted = {0,kilgore}, Proposal = {0,255,0}) -> 
+[DBG] collect(0, _, _, Proposal) = {0,255,0}) OK. END 
+[Proposer willard] Phase 2: round {0,willard} proposal {0,0,255} (was {0,255,0})
+[DBG] vote(N = 5, Round = {0,willard}) -> 
+[DBG] {accept, <0.132.0>, {0,willard}, {0,0,255}}:: Voted: {0,kilgore} 
+[DBG] {accept, <0.132.0>, {0,willard}, {0,0,255}}:: Voted: {0,kilgore} 
+[DBG] {accept, <0.132.0>, {0,willard}, {0,0,255}}:: Voted: {0,kilgore} 
+[DBG] {accept, <0.132.0>, {0,willard}, {0,0,255}}:: Voted: {0,kilgore} 
+[DBG] {accept, <0.132.0>, {0,willard}, {0,0,255}}:: Voted: {0,kilgore} 
+[DBG] Proposer ! {vote, Round = {0,willard}} 
+[DBG] Proposer ! {vote, Round = {0,willard}} 
+[DBG] Proposer ! {vote, Round = {0,willard}} 
+[DBG] Proposer ! {vote, Round = {0,willard}} 
+[DBG] Proposer ! {vote, Round = {0,willard}} 
+[Acceptor a] Phase 2: promised {0,willard} voted {0,willard} colour {0,0,255}
+[Acceptor b] Phase 2: promised {0,willard} voted {0,willard} colour {0,0,255}
+[Acceptor c] Phase 2: promised {0,willard} voted {0,willard} colour {0,0,255}
+[Acceptor d] Phase 2: promised {0,willard} voted {0,willard} colour {0,0,255}
+[Acceptor e] Phase 2: promised {0,willard} voted {0,willard} colour {0,0,255}
+[DBG] recevied vote(Round = {0,willard}) -> 
+[DBG] vote(N = 4, Round = {0,willard}) -> 
+[DBG] recevied vote(Round = {0,willard}) -> 
+[DBG] vote(N = 3, Round = {0,willard}) -> 
+[DBG] recevied vote(Round = {0,willard}) -> 
+[DBG] vote(N = 2, Round = {0,willard}) -> 
+[DBG] recevied vote(Round = {0,willard}) -> 
+[DBG] vote(N = 1, Round = {0,willard}) -> 
+[DBG] recevied vote(Round = {0,willard}) -> 
+[Proposer willard] DECIDED {0,0,255} in round {0,willard} after 151 ms
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+[Proposer kurtz] Phase 1: round {0,kurtz} proposal {255,0,0}
+[DBG] send(a, {prepare, <0.130.0>, {0,kurtz}})
+[DBG] send(b, {prepare, <0.130.0>, {0,kurtz}})
+[DBG] Acceptor [a, Promised = {0,willard}] recv: {prepare, Proposer = <0.130.0>, Round = {0,kurtz}} 
+[DBG] send(c, {prepare, <0.130.0>, {0,kurtz}})
+[DBG] Acceptor [b, Promised = {0,willard}] recv: {prepare, Proposer = <0.130.0>, Round = {0,kurtz}} 
+[DBG] Acceptor [a] Sorry!, I won't promise round {0,kurtz}, I promised {0,willard} 
+[DBG] send(d, {prepare, <0.130.0>, {0,kurtz}})
+[DBG] Acceptor [c, Promised = {0,willard}] recv: {prepare, Proposer = <0.130.0>, Round = {0,kurtz}} 
+[DBG] Acceptor [b] Sorry!, I won't promise round {0,kurtz}, I promised {0,willard} 
+[DBG] send(e, {prepare, <0.130.0>, {0,kurtz}})
+[DBG] Acceptor [d, Promised = {0,willard}] recv: {prepare, Proposer = <0.130.0>, Round = {0,kurtz}} 
+[DBG] Acceptor [c] Sorry!, I won't promise round {0,kurtz}, I promised {0,willard} 
+[DBG] collect(N = 3, Round = {0,kurtz}, MaxVoted = {0,0}, Proposal = {255,0,0}) -> 
+[DBG] Acceptor [e, Promised = {0,willard}] recv: {prepare, Proposer = <0.130.0>, Round = {0,kurtz}} 
+[DBG] Acceptor [d] Sorry!, I won't promise round {0,kurtz}, I promised {0,willard} 
+[DBG] collect(N = 3, Round = {0,kurtz}, MaxVoted = {0,0}, Proposal = {255,0,0}) -> 
+[DBG] Acceptor [e] Sorry!, I won't promise round {0,kurtz}, I promised {0,willard} 
+[DBG] collect(N = 3, Round = {0,kurtz}, MaxVoted = {0,0}, Proposal = {255,0,0}) -> 
+[DBG] collect(N = 3, Round = {0,kurtz}, MaxVoted = {0,0}, Proposal = {255,0,0}) -> 
+[DBG] collect(N = 3, Round = {0,kurtz}, MaxVoted = {0,0}, Proposal = {255,0,0}) -> 
+[DBG] collect(N = 3, Round = {0,kurtz}, MaxVoted = {0,0}, Proposal = {255,0,0}) -> 
+[DBG] Next {1,kurtz}})
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+[Proposer kurtz] Phase 1: round {1,kurtz} proposal {255,0,0}
+[DBG] send(a, {prepare, <0.130.0>, {1,kurtz}})
+[DBG] send(b, {prepare, <0.130.0>, {1,kurtz}})
+[DBG] Acceptor [a, Promised = {0,willard}] recv: {prepare, Proposer = <0.130.0>, Round = {1,kurtz}} 
+[DBG] send(c, {prepare, <0.130.0>, {1,kurtz}})
+[DBG] Acceptor [b, Promised = {0,willard}] recv: {prepare, Proposer = <0.130.0>, Round = {1,kurtz}} 
+[Acceptor a] Phase 1: promised {1,kurtz} voted {0,willard} colour {0,0,255}
+[DBG] send(d, {prepare, <0.130.0>, {1,kurtz}})
+[DBG] Acceptor [c, Promised = {0,willard}] recv: {prepare, Proposer = <0.130.0>, Round = {1,kurtz}} 
+[Acceptor b] Phase 1: promised {1,kurtz} voted {0,willard} colour {0,0,255}
+[DBG] send(e, {prepare, <0.130.0>, {1,kurtz}})
+[DBG] Acceptor [d, Promised = {0,willard}] recv: {prepare, Proposer = <0.130.0>, Round = {1,kurtz}} 
+[Acceptor c] Phase 1: promised {1,kurtz} voted {0,willard} colour {0,0,255}
+[DBG] collect(N = 3, Round = {1,kurtz}, MaxVoted = {0,0}, Proposal = {255,0,0}) -> 
+[DBG] Acceptor [e, Promised = {0,willard}] recv: {prepare, Proposer = <0.130.0>, Round = {1,kurtz}} 
+[Acceptor d] Phase 1: promised {1,kurtz} voted {0,willard} colour {0,0,255}
+[DBG] Received {promise(Round = {1,kurtz}, Voted = {0,willard}, Value = {0,0,255}) -> 
+[Acceptor e] Phase 1: promised {1,kurtz} voted {0,willard} colour {0,0,255}
+[DBG] Send collect(N = 2, Round = {1,kurtz}, Voted = {0,willard}, Value = {0,0,255}) -> 
+[DBG] collect(N = 2, Round = {1,kurtz}, MaxVoted = {0,willard}, Proposal = {0,0,255}) -> 
+[DBG] Received {promise(Round = {1,kurtz}, Voted = {0,willard}, Value = {0,0,255}) -> 
+[DBG] Send collect(N = 1, Round = {1,kurtz}, MaxVoted = {0,willard}, Proposal = {0,0,255}) -> 
+[DBG] collect(N = 1, Round = {1,kurtz}, MaxVoted = {0,willard}, Proposal = {0,0,255}) -> 
+[DBG] Received {promise(Round = {1,kurtz}, Voted = {0,willard}, Value = {0,0,255}) -> 
+[DBG] Send collect(N = 0, Round = {1,kurtz}, MaxVoted = {0,willard}, Proposal = {0,0,255}) -> 
+[DBG] collect(0, _, _, Proposal) = {0,0,255}) OK. END 
+[Proposer kurtz] Phase 2: round {1,kurtz} proposal {255,0,0} (was {0,0,255})
+[DBG] vote(N = 5, Round = {1,kurtz}) -> 
+[DBG] {accept, <0.130.0>, {1,kurtz}, {255,0,0}}:: Voted: {0,willard} 
+[DBG] {accept, <0.130.0>, {1,kurtz}, {255,0,0}}:: Voted: {0,willard} 
+[DBG] {accept, <0.130.0>, {1,kurtz}, {255,0,0}}:: Voted: {0,willard} 
+[DBG] {accept, <0.130.0>, {1,kurtz}, {255,0,0}}:: Voted: {0,willard} 
+[DBG] {accept, <0.130.0>, {1,kurtz}, {255,0,0}}:: Voted: {0,willard} 
+[DBG] Proposer ! {vote, Round = {1,kurtz}} 
+[DBG] Proposer ! {vote, Round = {1,kurtz}} 
+[DBG] Proposer ! {vote, Round = {1,kurtz}} 
+[DBG] Proposer ! {vote, Round = {1,kurtz}} 
+[Acceptor a] Phase 2: promised {1,kurtz} voted {1,kurtz} colour {255,0,0}
+[DBG] Proposer ! {vote, Round = {1,kurtz}} 
+[DBG] recevied vote(Round = {1,kurtz}) -> 
+[Acceptor c] Phase 2: promised {1,kurtz} voted {1,kurtz} colour {255,0,0}
+[Acceptor d] Phase 2: promised {1,kurtz} voted {1,kurtz} colour {255,0,0}
+[Acceptor b] Phase 2: promised {1,kurtz} voted {1,kurtz} colour {255,0,0}
+[Acceptor e] Phase 2: promised {1,kurtz} voted {1,kurtz} colour {255,0,0}
+[DBG] vote(N = 4, Round = {1,kurtz}) -> 
+[DBG] recevied vote(Round = {1,kurtz}) -> 
+[DBG] vote(N = 3, Round = {1,kurtz}) -> 
+[DBG] recevied vote(Round = {1,kurtz}) -> 
+[DBG] vote(N = 2, Round = {1,kurtz}) -> 
+[DBG] recevied vote(Round = {1,kurtz}) -> 
+[DBG] vote(N = 1, Round = {1,kurtz}) -> 
+[DBG] recevied vote(Round = {1,kurtz}) -> 
+[Proposer kurtz] DECIDED {255,0,0} in round {1,kurtz} after 569 ms
+[Paxy] Total elapsed time: 8586 ms
