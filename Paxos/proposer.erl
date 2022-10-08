@@ -1,7 +1,7 @@
 -module(proposer).
 -export([start/6]).
--define(timeout, 2000). %If not received messages on 2 s, abort
--define(backoff, 60000). %Begin new round after 60 s. So for this testcase, always round 0
+-define(timeout, 300). %If not received messages on 0.3 s, abort
+-define(backoff, 10). %Begin new round after 0.01 s. So many rounds
 
 start(Name, Proposal, Acceptors, Sleep, PanelId, Main) ->
 spawn(fun() -> init(Name, Proposal, Acceptors, Sleep, PanelId, Main) end).
@@ -44,7 +44,8 @@ case collect(Quorum, Round, MaxVoted, Proposal) of
 io:format("[Proposer ~w] Phase 2: round ~w proposal ~w (was ~w)~n",
 [Name, Round, Proposal, Value]),
 % update gui
-PanelId ! {updateProp, "Round: " ++ io_lib:format("~p", [Round]), Value},
+Colour = case Value of na -> {0,0,0}; _ -> Value end,
+PanelId ! {updateProp, "Round: " ++ io_lib:format("~p", [Round]), Colour},
 accept(Round, Proposal, Acceptors),
 case vote(length(Acceptors), Round) of
 ok ->
@@ -61,12 +62,12 @@ io:format("[DBG] collect(0, _, _, Proposal) = ~w) OK. END \n", [Proposal]),
 {accepted, Proposal};
 
 collect(N, Round, MaxVoted, Proposal) ->
-io:format("---[DBG] collect(N = ~w, Round = ~w, MaxVoted = ~w, Proposal = ~w) -> \n", [N, Round, MaxVoted, Proposal]),
+io:format("[DBG] collect(N = ~w, Round = ~w, MaxVoted = ~w, Proposal = ~w) -> \n", [N, Round, MaxVoted, Proposal]),
 receive
 {promise, Round, _, na} ->
 io:format("[DBG] Received {promise, Round = ~w, _, na} -> (MaxVoted = ~w) \n", [Round, MaxVoted]),
 io:format("[DBG] Send collect(N = ~w, Round = ~w, MaxVoted = ~w, Proposal = ~w) -> \n", [N - 1, Round, MaxVoted, Proposal]),
-collect(N - 1, Round, MaxVoted, Proposal);
+collect(N - 1, Round, MaxVoted, na);
 
 {promise, Round, Voted, Value} ->
 io:format("[DBG] Received {promise(Round = ~w, Voted = ~w, Value = ~w) -> \n", [Round, Voted, Value]),
