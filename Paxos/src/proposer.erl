@@ -1,6 +1,6 @@
 -module(proposer).
 -export([start/6]).
--define(timeout, 300). %If not received messages on 0.3 s, abort
+-define(timeout, 100). %If not received messages on 0.3 s, abort
 -define(backoff, 10). %Begin new round after 0.01 s. So many rounds
 
 start(Name, Proposal, Acceptors, Sleep, PanelId, Main) ->
@@ -47,7 +47,7 @@ io:format("[Proposer ~w] Phase 2: round ~w proposal ~w (was ~w)~n",
 Colour = case Value of na -> {0,0,0}; _ -> Value end,
 PanelId ! {updateProp, "Round: " ++ io_lib:format("~p", [Round]), Colour},
 accept(Round, Proposal, Acceptors),
-case vote(length(Acceptors), Round) of
+case vote(Quorum, Round) of
 ok ->
 {ok, Proposal};
 abort ->
@@ -108,7 +108,8 @@ vote(N - 1, Round);
 io:format("[DBG] recevied vote(_) -> \n"),
 vote(N, Round);
 {sorry, {accept, Round}} ->
-vote(N - 1, Round);
+io:format("[DBG] recevied sorry, {accept, Round = ~w} -> \n", [Round]),
+vote(N, Round);
 {sorry, _} ->
 vote(N, Round)
 after ?timeout ->
